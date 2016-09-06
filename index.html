@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <title>Code Contas</title>
     <style type="text/css">
-        .pago{
+        .pago, .em-dia{
             color: green;
         }
-        .nao-pago{
+        .nao-pago, .devendo{
             color: red;
         }
-        .
+        .sem-contas {
+            color: darkgray;
+        }
     </style>
 </head>
 <body id="app">
 
    <h1> {{ title }} </h1>
-   <h3>{{ status }}</h3>
+   <h3 :class="paidCount | statusClass">{{ status }}</h3>
    <nav>
        <ul>
            <li v-for="o in menus">
@@ -49,7 +51,9 @@
                    {{ o.done | doneLabel }}
                </td>
                <td>
-                   <a href="#" @click.prevent="loadBill(o)">Editar</a>
+                   <a href="#" @click.prevent="loadBill(index, o)">Editar</a>
+                   <a href="#" @click.prevent="removeBill(index)">Remover</a>
+                   <a href="#" @click.prevent="baixa(o)">{{ o.done | paidLabel }}</a>
                </td>
            </tr>
            </tbody>

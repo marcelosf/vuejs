@@ -9,6 +9,7 @@ var app = new Vue({
             {id:0, name: "Listar contas"},
             {id:1, name: "Criar conta"}
         ],
+
         activedView: 1,
         formType: 'insert',
         bill: {
@@ -26,7 +27,7 @@ var app = new Vue({
             'Empréstimo',
             'Gasolina'
         ],
-        teste: '',
+        paidCount: 0,
         bills: [
             {date_due: '20/08/2016', name: 'Conta de luz', value: 22280.00, done: 1},
             {date_due: '20/08/2016', name: 'Conta de sabão', value:480.00, done: 0},
@@ -40,12 +41,32 @@ var app = new Vue({
     computed: {
         status: function(){
             var count = 0;
-            for(var i in this.bills){
-                if(!this.bills[i].done){
-                    count++;
+            var message = '';
+            if (this.bills.length > 0) {
+
+                for(var i in this.bills){
+                    if(!this.bills[i].done){
+                        count++;
+                    }
                 }
+
+                this.paidCount = count;
+
+                if (count) {
+                    message = "Existem "  + count + " contas a serem pagas.";
+                } else {
+                    message = "Nenhuma conta a pagar."
+                }
+
+            } else {
+
+                this.paidCount = 'false';
+
+                message = "Nenhuma conta cadastrada."
+
             }
-            return !count?"Nenhuma conta a pagar":"Existem "+count+" contas a serem pagas.";
+
+            return message;
         }
     },
     methods: {
@@ -73,6 +94,23 @@ var app = new Vue({
             this.bill = bill;
             this.activedView = 1;
             this.formType = "update";
+        },
+
+        removeBill: function(id){
+            var index = id + 1;
+            var confirmed = confirm('Deseja remover a conta ' + index  + ' da lista?');
+            if (confirmed){
+                this.bills.splice(id, 1);
+            }
+        },
+
+        baixa: function(bill) {
+            if (bill.done == 0){
+                bill.done = 1
+
+            } else {
+                bill.done = 0;
+            }
         }
     }
 
@@ -86,4 +124,30 @@ Vue.filter('doneLabel', function(value){
         return "Paga";
     }
 
+});
+
+Vue.filter('paidLabel', function (value) {
+
+    if(value == 0){
+        return "Dar Baixa"
+    } else {
+        return "Alterar para não pago";
+    }
+
+});
+
+
+Vue.filter('statusClass', function(value){
+
+    console.log(value);
+
+    statusClass = '';
+
+
+    if (value >= 0 ) statusClass = 'devendo';
+    if (value == 0 ) statusClass = 'em-dia';
+    if (value == 'false' ) statusClass = 'sem-contas';
+
+
+    return statusClass
 });
