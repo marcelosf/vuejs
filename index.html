@@ -51,7 +51,7 @@
                    {{ o.done | doneLabel }}
                </td>
                <td>
-                   <a href="#" @click.prevent="loadBill(index, o)">Editar</a>
+                   <a href="#" @click.prevent="loadBill(o)">Editar</a>
                    <a href="#" @click.prevent="removeBill(index)">Remover</a>
                    <a href="#" @click.prevent="baixa(o)">{{ o.done | paidLabel }}</a>
                </td>

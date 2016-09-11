@@ -1,0 +1,12 @@
+{
+    "name": "marcelo/vuejs",
+    "require": {
+        "laravel/homestead": "^3.0"
+    },
+    "authors": [
+        {
+            "name": "Marcelo",
+            "email": "schneider.f@gmail.com"
+        }
+    ]
+}

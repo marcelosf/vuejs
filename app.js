@@ -29,12 +29,12 @@ var app = new Vue({
         ],
         paidCount: 0,
         bills: [
-            {date_due: '20/08/2016', name: 'Conta de luz', value: 22280.00, done: 1},
-            {date_due: '20/08/2016', name: 'Conta de sabão', value:480.00, done: 0},
-            {date_due: '20/08/2016', name: 'Conta de água', value: 80.00, done: 1},
-            {date_due: '20/08/2016', name: 'Viagem', value: 80.00, done: 0},
-            {date_due: '20/08/2016', name: 'Transporte', value: 80.00, done: 0},
-            {date_due: '20/08/2016', name: 'Conta de feijão', value: 800.00, done: 0}
+            {date_due: '20/08/2016', name: 'Conta de Luz', value: 22280.00, done: 1},
+            {date_due: '20/08/2016', name: 'Conta de água', value:480.00, done: 0},
+            {date_due: '20/08/2016', name: 'Conta de telefone', value: 80.00, done: 1},
+            {date_due: '20/08/2016', name: 'Gasolina', value: 80.00, done: 0},
+            {date_due: '20/08/2016', name: 'Supermercado', value: 80.00, done: 0},
+            {date_due: '20/08/2016', name: 'Empréstimo', value: 800.00, done: 0}
         ]
 
     },
@@ -74,6 +74,7 @@ var app = new Vue({
                 this.activedView = id;
                 if(id == 1){
                     this.formType = "insert";
+                    this.clearBill();
                 }
 
         },
@@ -81,15 +82,12 @@ var app = new Vue({
             if(this.formType == "insert"){
                 this.bills.push(this.bill);
             }
-            this.bill = {
-                date_due: '',
-                    name: '',
-                    value: 0,
-                    done: 0
-            };
+            
+            this.clearBill();
 
             this.activedView = 0;
         },
+
         loadBill: function(bill){
             this.bill = bill;
             this.activedView = 1;
@@ -110,6 +108,15 @@ var app = new Vue({
 
             } else {
                 bill.done = 0;
+            }
+        },
+        
+        clearBill: function() {
+            this.bill = {
+                date_due: '',
+                    name: '',
+                    value: 0,
+                    done: 0
             }
         }
     }
