@@ -34,11 +34,10 @@ Vue.filter('statusClass', function(value){
     return statusClass
 });
 
-var appComponent = Vue.extend({
+var menuComponent = Vue.extend({
+    
     template: `
     
-           <h1> {{ title }} </h1>
-           <h3 :class="paidCount | statusClass">{{ status }}</h3>
            <nav>
                <ul>
                    <li v-for="o in menus">
@@ -46,7 +45,58 @@ var appComponent = Vue.extend({
                    </li>
                </ul>
            </nav>
+    
+    `,
+    
+    data: function () {
+        
+        return {
+            
+            menus: [
+                {id:0, name: "Listar contas"},
+                {id:1, name: "Criar conta"}
+            ],
+            
+        };
+        
+    },
+    
+    methods: {
+        
+        showView: function(id){
+                this.activedView = id;
+                if(id == 1){
+                    this.formType = "insert";
+                    this.clearBill();
+                }
 
+        },
+        
+    }
+    
+});
+Vue.component('menu-component', menuComponent);
+
+var appComponent = Vue.extend({
+    template: `
+            
+            <style type="text/css">
+                .pago, .em-dia{
+                    color: green;
+                }
+                .nao-pago, .devendo{
+                    color: red;
+                }
+                .sem-contas {
+                    color: darkgray;
+                }
+            </style> 
+            
+           <h1> {{ title }} </h1>
+           <h3 :class="paidCount | statusClass">{{ status }}</h3>
+           
+           <menu-component></menu-component>
+            
            <div v-if="activedView == 0">
 
                <table border="1" cellpadding="10">
@@ -103,12 +153,9 @@ var appComponent = Vue.extend({
 
         return {
             title: "Contas a pagar",
-            menus: [
-                {id:0, name: "Listar contas"},
-                {id:1, name: "Criar conta"}
-            ],
+            
 
-            activedView: 1,
+            activedView: 0,
             formType: 'insert',
             bill: {
                 date_due: '',
@@ -168,14 +215,7 @@ var appComponent = Vue.extend({
         }
     },
     methods: {
-        showView: function(id){
-                this.activedView = id;
-                if(id == 1){
-                    this.formType = "insert";
-                    this.clearBill();
-                }
-
-        },
+        
         submit: function(){
             if(this.formType == "insert"){
                 this.bills.push(this.bill);
