@@ -34,45 +34,107 @@ Vue.filter('statusClass', function(value){
     return statusClass
 });
 
-var app = new Vue({
+var appComponent = Vue.extend({
+    template: `
+    
+           <h1> {{ title }} </h1>
+           <h3 :class="paidCount | statusClass">{{ status }}</h3>
+           <nav>
+               <ul>
+                   <li v-for="o in menus">
+                       <a href="#" @click.prevent="showView(o.id)">{{ o.name }}</a>
+                   </li>
+               </ul>
+           </nav>
 
-    el: "#app",
+           <div v-if="activedView == 0">
 
-    data: {
+               <table border="1" cellpadding="10">
+                   <thead>
+                   <tr>
+                       <td>#</td>
+                       <th>Vencimento</th>
+                       <th>Nome</th>
+                       <th>Valor</th>
+                       <th>Paga?</th>
+                       <th>Ações</th>
+                   </tr>
+                   </thead>
 
-        title: "Contas a pagar",
-        menus: [
-            {id:0, name: "Listar contas"},
-            {id:1, name: "Criar conta"}
-        ],
+                   <tbody>
+                   <tr v-for="(index,o) in bills">
+                       <td>{{ index + 1 }}</td>
+                       <td>{{ o.date_due }}</td>
+                       <td>{{ o.name }}</td>
+                       <td>{{ o.value | currency 'R$ ' 2}}</td>
+                       <td :class="{'pago': o.done, 'nao-pago': !o.done}">
+                           {{ o.done | doneLabel }}
+                       </td>
+                       <td>
+                           <a href="#" @click.prevent="loadBill(o)">Editar</a>
+                           <a href="#" @click.prevent="removeBill(index)">Remover</a>
+                           <a href="#" @click.prevent="baixa(o)">{{ o.done | paidLabel }}</a>
+                       </td>
+                   </tr>
+                   </tbody>
+               </table>
+           </div>
+           <div v-if="activedView == 1">
+               <form name="form" @submit.prevent="submit">
+                   <label>Vencimento:</label>
+                   <input type="text" v-model="bill.date_due">
+                   <br><br>
+                   <label>Nome:</label>
+                   <select v-model="bill.name">
+                       <option v-for="o in names" :value="o">
+                           {{ o }}
+                       </option>
+                   </select>
+                   <br><br>
+                   <label>Valor:</label>
+                   <input type="text" v-model="bill.value"/>
+                   <br/><br/>
+                   <input type="submit" value="Enviar" />
+               </form>
+           </div>
+    
+    `,
+    data: function () {
 
-        activedView: 1,
-        formType: 'insert',
-        bill: {
-            date_due: '',
-            name: '',
-            value: 0,
-            done: 0
-        },
-        names: [
-            'Conta de Luz',
-            'Conta de água',
-            'Conta de telefone',
-            'Supermercado',
-            'Cartão de crédito',
-            'Empréstimo',
-            'Gasolina'
-        ],
-        paidCount: 0,
-        bills: [
-            {date_due: '20/08/2016', name: 'Conta de Luz', value: 22280.00, done: 1},
-            {date_due: '20/08/2016', name: 'Conta de água', value:480.00, done: 0},
-            {date_due: '20/08/2016', name: 'Conta de telefone', value: 80.00, done: 1},
-            {date_due: '20/08/2016', name: 'Gasolina', value: 80.00, done: 0},
-            {date_due: '20/08/2016', name: 'Supermercado', value: 80.00, done: 0},
-            {date_due: '20/08/2016', name: 'Empréstimo', value: 800.00, done: 0}
-        ]
+        return {
+            title: "Contas a pagar",
+            menus: [
+                {id:0, name: "Listar contas"},
+                {id:1, name: "Criar conta"}
+            ],
 
+            activedView: 1,
+            formType: 'insert',
+            bill: {
+                date_due: '',
+                name: '',
+                value: 0,
+                done: 0
+            },
+            names: [
+                'Conta de Luz',
+                'Conta de água',
+                'Conta de telefone',
+                'Supermercado',
+                'Cartão de crédito',
+                'Empréstimo',
+                'Gasolina'
+            ],
+            paidCount: 0,
+            bills: [
+                {date_due: '20/08/2016', name: 'Conta de Luz', value: 22280.00, done: 1},
+                {date_due: '20/08/2016', name: 'Conta de água', value:480.00, done: 0},
+                {date_due: '20/08/2016', name: 'Conta de telefone', value: 80.00, done: 1},
+                {date_due: '20/08/2016', name: 'Gasolina', value: 80.00, done: 0},
+                {date_due: '20/08/2016', name: 'Supermercado', value: 80.00, done: 0},
+                {date_due: '20/08/2016', name: 'Empréstimo', value: 800.00, done: 0}
+            ]
+        }
     },
     computed: {
         status: function(){
@@ -156,5 +218,13 @@ var app = new Vue({
             }
         }
     }
+    
+});
+
+Vue.component('app-component', appComponent);
+
+var app = new Vue({
+
+    el: "#app"
 
 });
