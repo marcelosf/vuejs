@@ -75,7 +75,6 @@ var menuComponent = Vue.extend({
     }
     
 });
-Vue.component('menu-component', menuComponent);
 
 var billCreateComponent = Vue.extend({
 
@@ -122,17 +121,16 @@ var billCreateComponent = Vue.extend({
 
         submit: function(){
             if(this.formType == "insert"){
-                this.bills.push(this.bill);
+                this.$parent.$children[1].bills.push(this.bill);
             }
 
-            this.clearBill();
+            this.$parent.clearBill();
 
-            this.activedView = 0;
+            this.$parent.activedView = 0;
         }
     }
 
 });
-Vue.component('bill-create-component', billCreateComponent);
 
 var billListComponent = Vue.extend({
 
@@ -224,10 +222,17 @@ var billListComponent = Vue.extend({
     },
 
 });
-Vue.component('bill-list-component', billListComponent);
-
 
 var appComponent = Vue.extend({
+
+    components: {
+
+        'menu-component': menuComponent,
+        'bill-list-component': billListComponent,
+        'bill-create-component': billCreateComponent
+
+    },
+
     template: `
             
             <style type="text/css">
@@ -242,12 +247,12 @@ var appComponent = Vue.extend({
            
            <menu-component></menu-component>
             
-           <div v-if="activedView == 0">
+           <div v-show="activedView == 0">
 
                 <bill-list-component></bill-list-component>
                
            </div>
-           <div v-if="activedView == 1">
+           <div v-show="activedView == 1">
                <bill-create-component v-bind:bill="bill", v-bind:form-type="formType"></bill-create-component>
            </div>
     
