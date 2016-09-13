@@ -253,7 +253,7 @@ var appComponent = Vue.extend({
                
            </div>
            <div v-show="activedView == 1">
-               <bill-create-component v-bind:bill="bill", v-bind:form-type="formType"></bill-create-component>
+               <bill-create-component :bill.sync="bill", :form-type="formType"></bill-create-component>
            </div>
     
     `,
