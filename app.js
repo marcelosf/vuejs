@@ -249,7 +249,7 @@ var appComponent = Vue.extend({
             
            <div v-show="activedView == 0">
 
-                <bill-list-component></bill-list-component>
+                <bill-list-component v-ref:bill-list-component></bill-list-component>
                
            </div>
            <div v-show="activedView == 1">
@@ -277,10 +277,11 @@ var appComponent = Vue.extend({
         status: function(){
             var count = 0;
             var message = '';
-            if (this.bills.length > 0) {
+            var billListComponent = this.$refs.billListComponent;
+            if (billListComponent.bills.length > 0) {
 
-                for(var i in this.bills){
-                    if(!this.bills[i].done){
+                for(var i in billListComponent.bills){
+                    if(!billListComponent.bills[i].done){
                         count++;
                     }
                 }
