@@ -64,9 +64,9 @@ var menuComponent = Vue.extend({
     methods: {
         
         showView: function(id){
-                this.$parent.activedView = id;
+                this.$dispatch('change-activedview', id);
                 if(id == 1){
-                    this.$parent.formType = "insert";
+                    this.$dispatch('change-formtype', 'insert');
                     this.$parent.clearBill();
                 }
 
@@ -97,12 +97,11 @@ var billCreateComponent = Vue.extend({
           </form>
     `,
 
-    props: ['bill', 'formType'],
+    props: ['bill'],
 
     data: function() {
-
         return {
-
+            formType: 'insert',
             names: [
                 'Conta de Luz',
                 'Conta de água',
@@ -121,12 +120,18 @@ var billCreateComponent = Vue.extend({
 
         submit: function(){
             if(this.formType == "insert"){
-                this.$parent.$children[1].bills.push(this.bill);
+                this.$parent.$refs.billListComponent.bills.push(this.bill);
             }
 
             this.$parent.clearBill();
 
             this.$parent.activedView = 0;
+        }
+    },
+
+    events: {
+        'change-formtype': function (formType) {
+            this.formType = formType;
         }
     }
 
@@ -253,7 +258,7 @@ var appComponent = Vue.extend({
                
            </div>
            <div v-show="activedView == 1">
-               <bill-create-component :bill.sync="bill", :form-type="formType"></bill-create-component>
+               <bill-create-component :bill.sync="bill"></bill-create-component>
            </div>
     
     `,
@@ -262,7 +267,6 @@ var appComponent = Vue.extend({
         return {
             title: "Contas a pagar",
             activedView: 0,
-            formType: 'insert',
             bill: {
                 date_due: '',
                 name: '',
@@ -315,6 +319,16 @@ var appComponent = Vue.extend({
                     value: 0,
                     done: 0
             }
+        }
+    },
+
+    events: {
+        'change-activedview': function (activedView) {
+            this.activedView = activedView;
+        },
+
+        'change-formtype': function (formType) {
+            this.$broadcast('change-formtype', formType);
         }
     }
     
