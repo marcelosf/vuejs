@@ -29,7 +29,6 @@ window.appComponent = Vue.extend({
 
         return {
             title: "Contas a pagar",
-            activedView: 0,
             paidCount: 0,
         }
     },
@@ -68,17 +67,6 @@ window.appComponent = Vue.extend({
     methods: {},
 
     events: {
-        'change-activedview': function (activedView) {
-            this.activedView = activedView;
-        },
-
-        'change-formtype': function (formType) {
-            this.$broadcast('change-formtype', formType);
-        },
-
-        'new-bill' : function(bill){
-            this.$broadcast('new-bill', bill);
-        },
 
         'change-bill': function (bill) {
             this.$broadcast('change-bill', bill);

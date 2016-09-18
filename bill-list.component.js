@@ -42,30 +42,20 @@ window.billListComponent = Vue.extend({
     
     `,
 
-
-    data: function() {
-
+    data: function () {
+        
         return {
-
-            bills: [
-                {date_due: '20/08/2016', name: 'Conta de Luz', value: 22280.00, done: 1},
-                {date_due: '20/08/2016', name: 'Conta de água', value:480.00, done: 0},
-                {date_due: '20/08/2016', name: 'Conta de telefone', value: 80.00, done: 1},
-                {date_due: '20/08/2016', name: 'Gasolina', value: 80.00, done: 0},
-                {date_due: '20/08/2016', name: 'Supermercado', value: 80.00, done: 0},
-                {date_due: '20/08/2016', name: 'Empréstimo', value: 800.00, done: 0}
-            ]
-
-        };
-
+            
+            bills: this.$root.$children[0].bills
+            
+        }
+        
     },
-
+    
     methods: {
 
         loadBill: function(bill){
             this.$dispatch('change-bill', bill);
-            this.$dispatch('change-activedview', 1);
-            this.$dispatch('change-formtype', 'update');
         },
 
         removeBill: function(id){
@@ -86,11 +76,5 @@ window.billListComponent = Vue.extend({
         },
 
     },
-
-    events: {
-        'new-bill': function(bill){
-            this.bills.push(bill);
-        }
-    }
 
 });

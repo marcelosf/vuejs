@@ -47,10 +47,11 @@ window.billCreateComponent = Vue.extend({
 
         submit: function(){
             if(this.formType == "insert"){
-                this.$dispatch('new-bill', this.bill);
+                this.$root.$children[0].bills.push(this.bill);
+                console.log(this.$root.$children[0].bills);
             }
-            this.$dispatch('clear-bill');
-            this.$dispatch('change-activedview', 0);
+            this.clearBill('clear-bill');
+            this.$router.go({name: 'bill.list'});
         },
 
         clearBill: function() {
@@ -64,9 +65,6 @@ window.billCreateComponent = Vue.extend({
     },
 
     events: {
-        'change-formtype': function (formType) {
-            this.formType = formType;
-        },
 
         'change-bill': function (bill) {
             this.bill = bill;
