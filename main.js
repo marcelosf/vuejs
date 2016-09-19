@@ -40,6 +40,10 @@ router.map({
         name: 'bill.create',
         component: billCreateComponent
     },
+    '/bill/:index/update': {
+        name: 'bill.update',
+        component: billCreateComponent
+    },
     
     '*': {
         

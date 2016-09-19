@@ -19,6 +19,16 @@ window.billCreateComponent = Vue.extend({
           </form>
     `,
 
+    formType: 'insert',
+    
+    created: function (){
+        if(this.$route.name == 'bill.update'){
+            this.formType = 'update';
+            this.getBill(this.$route.params.index);
+        }
+    },
+    
+    
     data: function() {
         return {
             formType: 'insert',
@@ -50,28 +60,12 @@ window.billCreateComponent = Vue.extend({
                 this.$root.$children[0].bills.push(this.bill);
                 console.log(this.$root.$children[0].bills);
             }
-            this.clearBill('clear-bill');
             this.$router.go({name: 'bill.list'});
         },
-
-        clearBill: function() {
-            this.bill = {
-                date_due: '',
-                name: '',
-                value: 0,
-                done: 0
-            }
-        }
-    },
-
-    events: {
-
-        'change-bill': function (bill) {
-            this.bill = bill;
-        },
-
-        'clear-bill': function () {
-            this.clearBill();
+        
+        getBill: function(index) {
+            var bills = this.$root.$children[0].bills;
+            this.bill = bills[index];
         }
     }
 

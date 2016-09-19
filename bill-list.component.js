@@ -32,8 +32,8 @@ window.billListComponent = Vue.extend({
                            {{ o.done | doneLabel }}
                        </td>
                        <td>
-                           <a href="#" @click.prevent="$parent.loadBill(o)">Editar</a>
-                           <a href="#" @click.prevent="$parent.removeBill(index)">Remover</a>
+                           <a v-link="{name: 'bill.update', params: {index: index}}">Editar</a>
+                           <a href="#" @click.prevent="$parent.removeBill(o)">Remover</a>
                            <a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>
                        </td>
                    </tr>
@@ -43,26 +43,17 @@ window.billListComponent = Vue.extend({
     `,
 
     data: function () {
-        
-        return {
-            
-            bills: this.$root.$children[0].bills
-            
-        }
-        
+        return {           
+            bills: this.$root.$children[0].bills           
+        }       
     },
     
     methods: {
 
-        loadBill: function(bill){
-            this.$dispatch('change-bill', bill);
-        },
-
-        removeBill: function(id){
-            var index = id + 1;
-            var confirmed = confirm('Deseja remover a conta ' + index  + ' da lista?');
+        removeBill: function(bill){
+            var confirmed = confirm('Deseja remover a conta da lista?');
             if (confirmed){
-                this.bills.splice(id, 1);
+                this.$root.$children[0].bills.$remove(bill);
             }
         },
 

@@ -1,11 +1,7 @@
 window.appComponent = Vue.extend({
 
     components: {
-
         'menu-component': menuComponent,
-        'bill-list-component': billListComponent,
-        'bill-create-component': billCreateComponent
-
     },
 
     template: `
@@ -36,11 +32,11 @@ window.appComponent = Vue.extend({
         status: function(){
             var count = 0;
             var message = '';
-            var billListComponent = this.$refs.billListComponent;
-            if (billListComponent.bills.length > 0) {
+            var bills = this.$root.$children[0].bills;
+            if (bills.length > 0) {
 
-                for(var i in billListComponent.bills){
-                    if(!billListComponent.bills[i].done){
+                for(var i in bills){
+                    if(!bills[i].done){
                         count++;
                     }
                 }
@@ -64,13 +60,8 @@ window.appComponent = Vue.extend({
             return message;
         }
     },
-    methods: {},
 
     events: {
-
-        'change-bill': function (bill) {
-            this.$broadcast('change-bill', bill);
-        },
 
         'clear-bill': function () {
             this.$broadcast('clear-bill');
