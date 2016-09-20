@@ -1,4 +1,4 @@
-window.billListComponent = Vue.extend({
+window.billPayListComponent = Vue.extend({
 
     template: `
                 
@@ -44,7 +44,7 @@ window.billListComponent = Vue.extend({
 
     data: function () {
         return {           
-            bills: this.$root.$children[0].bills           
+            bills: this.$root.$children[0].billsPay
         }       
     },
     
@@ -53,7 +53,7 @@ window.billListComponent = Vue.extend({
         removeBill: function(bill){
             var confirmed = confirm('Deseja remover a conta da lista?');
             if (confirmed){
-                this.$root.$children[0].bills.$remove(bill);
+                this.$root.$children[0].billsPay.$remove(bill);
             }
         },
 
