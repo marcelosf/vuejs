@@ -17,8 +17,8 @@ window.billPayMenuComponent = Vue.extend({
         return {
             
             menus: [
-                {id:0, name: "Listar contas", routeName: 'bill.list'},
-                {id:1, name: "Criar conta", routeName: 'bill.create'}
+                {id:0, name: "Listar contas", routeName: 'bill-pay.list'},
+                {id:1, name: "Criar conta", routeName: 'bill-pay.create'}
             ],
             
         };
