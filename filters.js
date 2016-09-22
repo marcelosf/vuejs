@@ -19,17 +19,35 @@ Vue.filter('paidLabel', function (value) {
 });
 
 
-Vue.filter('statusClass', function(value){
+Vue.filter('statusClass', function (value) {
+    return getStatus(value).class
+});
+
+Vue.filter('statusMessage', function (value) {
+    return getStatus(value).message;
+})
+
+
+function getStatus(value){
 
     console.log(value);
 
-    statusClass = '';
+  var  statusClass = '';
+  var  statusMessage = '';
+
+    if (value >= 0 ) {
+        statusClass = 'devendo';
+        statusMessage = 'Existem ' + value + ' contas a serem pagas';
+    }
+    if (value == 0 ) {
+        statusClass = 'em-dia';
+        statusMessage = 'Todas as contas estão pagas';
+    }
+    if (value == 'false' ) {
+        statusClass = 'sem-contas';
+        statusMessage= 'Nenhuma conta cadastrada.';
+    }
 
 
-    if (value >= 0 ) statusClass = 'devendo';
-    if (value == 0 ) statusClass = 'em-dia';
-    if (value == 'false' ) statusClass = 'sem-contas';
-
-
-    return statusClass
-});
+    return {class: statusClass, message: statusMessage};
+}

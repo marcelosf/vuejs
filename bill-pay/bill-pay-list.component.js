@@ -32,7 +32,7 @@ window.billPayListComponent = Vue.extend({
                            {{ o.done | doneLabel }}
                        </td>
                        <td>
-                           <a v-link="{name: 'bill-pay.update', params: {index: index}}">Editar</a>
+                           <a v-link="{name: 'bill-pay.update', params: {id: o.id }}">Editar</a>
                            <a href="#" @click.prevent="$parent.removeBill(o)">Remover</a>
                            <a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>
                        </td>
@@ -70,17 +70,20 @@ window.billPayListComponent = Vue.extend({
         removeBill: function(bill){
             var confirmed = confirm('Deseja remover a conta da lista?');
             if (confirmed){
-                this.$root.$children[0].billsPay.$remove(bill);
+                this.$http.delete('bills/' + bill.id).then(function (response) {
+                    this.bills.$remove(bill);
+                    this.$dispatch('change-status');
+                });
             }
         },
 
         baixa: function(bill) {
             if (bill.done == 0){
                 bill.done = 1
-
             } else {
                 bill.done = 0;
             }
+            this.$dispatch('change-status');
         },
 
     },

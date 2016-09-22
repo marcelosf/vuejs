@@ -14,57 +14,61 @@ window.billPayComponent = Vue.extend({
             </style> 
             
            <h1> {{ title }} </h1>
-           <h3 :class="paidCount | statusClass">{{ status }}</h3>
+           <h3 :class="status | statusClass">{{ status | statusMessage }}</h3>
            
            <menu-component></menu-component>
            <router-view></router-view> 
           
     
     `,
+
+    http: {
+
+        root: 'http://192.168.10.10:8000/api'
+
+    },
+
     data: function () {
 
         return {
             title: "Contas a pagar",
-            paidCount: 0,
+            status: false
         }
     },
-    computed: {
-        status: function(){
-            var count = 0;
-            var message = '';
-            var bills = this.$root.$children[0].billsPay;
-            if (bills.length > 0) {
 
-                for(var i in bills){
-                    if(!bills[i].done){
-                        count++;
-                    }
-                }
+    created: function(){
+        this.updateStatus();
+    },
 
-                this.paidCount = count;
+    methods: {
 
-                if (count) {
-                    message = "Existem "  + count + " contas a serem pagas.";
-                } else {
-                    message = "Nenhuma conta a pagar."
-                }
+        calculateStatus: function (bills) {
 
-            } else {
-
-                this.paidCount = 'false';
-
-                message = "Nenhuma conta cadastrada."
-
+            if (!bills.length) {
+                return this.status = false;
             }
 
-            return message;
+            var count = 0;
+
+            for (var i in bills) {
+                if(!bills[i].done){
+                    count ++;
+                }
+            }
+            this.status = count;
+        },
+
+        updateStatus: function () {
+            this.$http.get('bills').then(function (response) {
+                this.calculateStatus(response.data);
+            })
         }
+
     },
 
     events: {
-
-        'clear-bill': function () {
-            this.$broadcast('clear-bill');
+        'change-status' : function () {
+            this.updateStatus();
         }
     }
     
