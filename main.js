@@ -13,27 +13,40 @@ var mainComponent = Vue.extend({
         return {
 
             billsPay: [
-                {date_due: '20/08/2016', name: 'Conta de Luz', value: 22280.00, done: 1},
-                {date_due: '20/08/2016', name: 'Conta de água', value:480.00, done: 0},
+                {date_due: '20/08/2016', name: 'Conta de Luz', value: 80, done: 1},
+                {date_due: '20/08/2016', name: 'Conta de água', value:48, done: 0},
                 {date_due: '20/08/2016', name: 'Conta de telefone', value: 80.00, done: 1},
                 {date_due: '20/08/2016', name: 'Gasolina', value: 80.00, done: 0},
-                {date_due: '20/08/2016', name: 'Supermercado', value: 80.00, done: 0},
+                {date_due: '20/08/2016', name: 'Supermercado', value: 90.00, done: 0},
                 {date_due: '20/08/2016', name: 'Empréstimo', value: 800.00, done: 0}
             ],
 
             billsReceive: [
-                {date_due: '20/08/2016', name: 'Conta de Luz', value: 22280.00, done: 1},
-                {date_due: '21/08/2016', name: 'Conta de água', value:480.00, done: 0},
-                {date_due: '22/08/2016', name: 'Conta de telefone', value: 80.00, done: 1},
-                {date_due: '23/08/2016', name: 'Gasolina', value: 80.00, done: 0},
-                {date_due: '24/08/2016', name: 'Supermercado', value: 80.00, done: 0},
-                {date_due: '25/08/2016', name: 'Empréstimo', value: 800.00, done: 0}
+                {date_due: '20/08/2016', name: 'Conta de Luz', value: 200, done: 1},
+                {date_due: '21/08/2016', name: 'Conta de água', value:100, done: 0},
+                {date_due: '22/08/2016', name: 'Conta de telefone', value: 250, done: 1},
+                {date_due: '23/08/2016', name: 'Gasolina', value: 20, done: 0},
+                {date_due: '24/08/2016', name: 'Supermercado', value: 600, done: 0},
+                {date_due: '25/08/2016', name: 'Empréstimo', value: 100, done: 0}
             ],
 
 
         };
 
-    }
+    },
+    
+    methods: {
+        
+        getListSum: function (billList){
+            var bills = billList;
+            var sum = 0;
+            for (i in bills){
+                sum = parseFloat(bills[i].value) + parseFloat(sum);
+            }
+            return sum;
+        }
+        
+    },
     
 });
 
@@ -77,8 +90,12 @@ router.map({
             }
         }
     },
+    '/dashboard': {
+        name: 'bill-dashboard',
+        component: billDashboardComponent
+    },
     '*': {
-        component: billPayListComponent
+        component: billDashboardComponent
     }
 
 });
@@ -86,7 +103,7 @@ router.map({
 router.start({
     
     components: {
-        'bill-pay-component': billPayComponent
+        'bill-dashboard-component': billDashboardComponent
     }
     
 }, '#app');
@@ -94,6 +111,6 @@ router.start({
 
 router.redirect({
     
-    '*': '/bills-pays'
+    '*': '/dashboard'
     
 });
