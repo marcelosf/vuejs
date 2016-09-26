@@ -30,12 +30,10 @@ Vue.filter('statusMessage', function (value) {
 
 function getStatus(value){
 
-    console.log(value);
-
   var  statusClass = '';
   var  statusMessage = '';
 
-    if (value >= 0 ) {
+    if (value > 0 ) {
         statusClass = 'devendo';
         statusMessage = 'Existem ' + value + ' contas a serem pagas';
     }

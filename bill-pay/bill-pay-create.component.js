@@ -14,6 +14,9 @@ window.billPayCreateComponent = Vue.extend({
                    <br><br>
                    <label>Valor:</label>
                    <input type="text" v-model="bill.value"/>
+                   <br><br>
+                   <label>Pago:</label>
+                   <input type="checkbox" {{ checked }} v-model="bill.done"/>
                    <br/><br/>
                    <input type="submit" value="Enviar" />
           </form>

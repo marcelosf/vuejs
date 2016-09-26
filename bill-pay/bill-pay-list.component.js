@@ -34,7 +34,7 @@ window.billPayListComponent = Vue.extend({
                        <td>
                            <a v-link="{name: 'bill-pay.update', params: {id: o.id }}">Editar</a>
                            <a href="#" @click.prevent="$parent.removeBill(o)">Remover</a>
-                           <a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>
+                           <a href="#" @click.prevent="$parent.updateBill(o)">{{ o.done | paidLabel }}</a>
                        </td>
                    </tr>
                    </tbody>
@@ -55,11 +55,9 @@ window.billPayListComponent = Vue.extend({
     },
 
     created: function () {
-
         this.$http.get('bills').then(function (response) {
-
             this.bills = response.data;
-
+            console.log(response.data);
         });
 
     } ,
@@ -77,13 +75,19 @@ window.billPayListComponent = Vue.extend({
             }
         },
 
-        baixa: function(bill) {
-            if (bill.done == 0){
-                bill.done = 1
+        updateBill: function (bill) {
+            if (bill.done == false){
+                bill.done = true
             } else {
-                bill.done = 0;
+                bill.done = false;
             }
-            this.$dispatch('change-status');
+            this.$http.put('bills/' + bill, bill).then(function (response) {
+                this.$dispatch('change-status');
+            })
+        },
+
+        baixa: function(bill) {
+
         },
 
     },
