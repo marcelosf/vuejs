@@ -57,7 +57,7 @@ window.billPayListComponent = Vue.extend({
     created: function () {
         this.$http.get('bills').then(function (response) {
             this.bills = response.data;
-            console.log(response.data);
+            console.log(response.data.id);
         });
 
     } ,
@@ -76,12 +76,12 @@ window.billPayListComponent = Vue.extend({
         },
 
         updateBill: function (bill) {
-            if (bill.done == false){
+            if (!bill.done){
                 bill.done = true
             } else {
                 bill.done = false;
             }
-            this.$http.put('bills/' + bill, bill).then(function (response) {
+            this.$http.put('bills/' + bill.id, bill).then(function (response) {
                 this.$dispatch('change-status');
             })
         },

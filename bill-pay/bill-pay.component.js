@@ -53,6 +53,7 @@ window.billPayComponent = Vue.extend({
             for (var i in bills) {
                 if(!bills[i].done){
                     count ++;
+                    console.log('done=>'+bills[i].done+' count=>'+count);
                 }
             }
             this.status = count;
