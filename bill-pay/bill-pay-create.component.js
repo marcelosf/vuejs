@@ -66,13 +66,15 @@ window.billPayCreateComponent = Vue.extend({
 
         submit: function(){
             if(this.formType == "insert"){
-                this.$http.post('bills', this.bill).then(function (response) {
+                var resource = this.$resource('bills{/id}');
+                resource.save({}, this.bill).then(function (response) {
                     console.log(this.bill);
                     this.$router.go({name: 'bill-pay.list'});
                     this.$dispatch('change-status');
                 })
             }else{
-                this.$http.put('bills/' + this.bill.id, this.bill).then(function (response) {
+                var resource = this.$resource('bills{/id}');
+                resource.update({id: this.bill.id}, this.bill).then(function (response) {
                     this.$router.go({name: 'bill-pay.list'});
                     this.$dispatch('change-status');
                 })
@@ -80,7 +82,8 @@ window.billPayCreateComponent = Vue.extend({
         },
         
         getBill: function(id) {
-            this.$http.get('bills/'+id).then(function (response) {
+            var resource = this.$resource('bills{/id}');
+            resource.get({id: id}).then(function (response) {
                 this.bill = response.data;
             });
         }

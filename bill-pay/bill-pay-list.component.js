@@ -55,7 +55,8 @@ window.billPayListComponent = Vue.extend({
     },
 
     created: function () {
-        this.$http.get('bills').then(function (response) {
+        var resource = this.$resource('bills{/id}');
+        resource.query().then(function (response) {
             this.bills = response.data;
             console.log(response.data.id);
         });
@@ -66,9 +67,10 @@ window.billPayListComponent = Vue.extend({
     methods: {
 
         removeBill: function(bill){
+            var resource = this.$resource('bills{/id}');
             var confirmed = confirm('Deseja remover a conta da lista?');
             if (confirmed){
-                this.$http.delete('bills/' + bill.id).then(function (response) {
+                resource.delete({id: bill.id}).then(function (response) {
                     this.bills.$remove(bill);
                     this.$dispatch('change-status');
                 });
