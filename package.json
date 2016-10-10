@@ -1,0 +1,27 @@
+{
+  "name": "vuejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "lite-server": "^2.2.2",
+    "vue": "^1.0.26",
+    "vue-resource": "^1.0.2",
+    "vue-route": "^1.5.1",
+    "vue-router": "^0.7.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelosf/vuejs.git"
+  },
+  "author": "Marcelo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcelosf/vuejs/issues"
+  },
+  "homepage": "https://github.com/marcelosf/vuejs#readme"
+}
