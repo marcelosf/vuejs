@@ -1,4 +1,4 @@
-window.billReceiveCreateComponent = Vue.extend({
+window.billPayCreateComponent = Vue.extend({
 
     template: `
           <form name="form" @submit.prevent="submit">
@@ -23,15 +23,15 @@ window.billReceiveCreateComponent = Vue.extend({
     `,
 
     formType: 'insert',
-
+    
     created: function (){
-        if(this.$route.name == 'bill-receive.update'){
+        if(this.$route.name == 'bill-pay.update'){
             this.formType = 'update';
             this.getBill(this.$route.params.id);
         }
     },
-
-
+    
+    
     data: function() {
         return {
             formType: 'insert',
@@ -59,26 +59,25 @@ window.billReceiveCreateComponent = Vue.extend({
     methods: {
 
         submit: function(){
-            var self = this;
             if(this.formType == "insert"){
-                BillReceive.save('bills-receive', this.bill).then(function (response) {
-                    self.$router.go({name: 'bill-receive.list'});
+                let self = this;
+                Bill.save('bills', this.bill).then(function (response) {
+                    self.$router.go({name: 'bill-pay.list'});
                     self.$dispatch('change-info');
                 })
             }else{
-                BillReceive.update({id: this.bill.id}, this.bill).then(function (response) {
-                    self.$router.go({name: 'bill-receive.list'});
+                let self = this;
+                Bill.update({id: this.bill.id}, this.bill).then(function (response) {
+                    self.$router.go({name: 'bill-pay.list'});
                     self.$dispatch('change-info');
                 })
             }
         },
-
+        
         getBill: function(id) {
-            var self = this;
-            console.log(id);
-            BillReceive.get({id: id}).then(function (response) {
+            let self = this;
+            Bill.get({id: id}).then(function (response) {
                 self.bill = response.data;
-                console.log(response.data);
             });
         }
     }

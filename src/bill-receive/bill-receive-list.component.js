@@ -1,4 +1,4 @@
-window.billPayListComponent = Vue.extend({
+window.billReceiveListComponent = Vue.extend({
 
     template: `
                 
@@ -32,7 +32,7 @@ window.billPayListComponent = Vue.extend({
                            {{ o.done | doneLabel }}
                        </td>
                        <td>
-                           <a v-link="{name: 'bill-pay.update', params: {id: o.id }}">Editar</a>
+                           <a v-link="{name: 'bill-receive.update', params: {id: o.id }}">Editar</a>
                            <a href="#" @click.prevent="$parent.removeBill(o)">Remover</a>
                            <a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>
                        </td>
@@ -43,15 +43,17 @@ window.billPayListComponent = Vue.extend({
     `,
 
     data: function () {
-        return {           
+        return {
             bills: []
-        }       
+        }
     },
 
     created: function () {
-        var self = this;
-        Bill.query('bills').then(function (response) {
+        let self = this;
+        BillReceive.query('bills').then(function (response) {
             self.bills = response.data;
+
+
         });
 
     } ,
@@ -60,24 +62,24 @@ window.billPayListComponent = Vue.extend({
     methods: {
 
         removeBill: function(bill){
-            var confirmed = confirm('Deseja remover a conta da lista?');
+            let confirmed = confirm('Deseja remover a conta da lista?');
             if (confirmed){
-                var self = this;
-                Bill.delete({id: bill.id}).then(function (response) {
+                let self = this;
+                BillReceive.delete({id: bill.id}).then(function (response) {
                     self.bills.$remove(bill);
                     self.$dispatch('change-info');
                 });
             }
         },
-        
+
         baixa: function(bill){
             if (bill.done == 0){
                 bill.done = 1
-                } else {
-                    bill.done = 0;
-                }
-            var self = this;
-            Bill.update({id: bill.id}, bill).then(function (response){
+            } else {
+                bill.done = 0;
+            }
+            let self = this;
+            BillReceive.update({id: bill.id}, bill).then(function (response){
                 self.$dispatch('change-info');
             });
         }

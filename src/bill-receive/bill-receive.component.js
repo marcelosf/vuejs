@@ -1,7 +1,7 @@
-window.billPayComponent = Vue.extend({
+window.billReceiveComponent = Vue.extend({
 
     components: {
-        'menu-component': billPayMenuComponent,
+        'menu-component': billReceiveMenuComponent,
     },
 
     template: `
@@ -26,7 +26,7 @@ window.billPayComponent = Vue.extend({
     data: function () {
 
         return {
-            title: "Contas a pagar",
+            title: "Contas a receber",
             status: false,
             total: 0,
         }
@@ -45,9 +45,9 @@ window.billPayComponent = Vue.extend({
                 return this.status = false;
             }
 
-            var count = 0;
+            let count = 0;
 
-            for (var i in bills) {
+            for (let i in bills) {
                 if(!bills[i].done){
                     count ++;
                 }
@@ -56,15 +56,15 @@ window.billPayComponent = Vue.extend({
         },
 
         updateStatus: function () {
-            var self = this;
-            Bill.query('bills').then(function (response) {
+            let self = this;
+            BillReceive.query('bills').then(function (response) {
                 self.calculateStatus(response.data);
             })
         },
 
         updateTotal: function () {
-            var self = this;
-            Bill.total('bills').then(function (response) {
+            let self = this;
+            BillReceive.total('bills').then(function (response) {
                 self.total = response.data.total;
             })
         }
@@ -77,5 +77,5 @@ window.billPayComponent = Vue.extend({
             this.updateTotal();
         }
     }
-    
+
 });
