@@ -42,12 +42,6 @@ window.billPayListComponent = Vue.extend({
     
     `,
 
-    http: {
-
-        root: 'http://192.168.10.10:8000/api'
-
-    },
-
     data: function () {
         return {           
             bills: []
@@ -55,9 +49,9 @@ window.billPayListComponent = Vue.extend({
     },
 
     created: function () {
-        var resource = this.$resource('bills{/id}');
-        resource.query().then(function (response) {
-            this.bills = response.data;
+        var self = this;
+        Bill.query().then(function (response) {
+            self.bills = response.data;
             console.log(response.data.id);
         });
 
@@ -67,12 +61,12 @@ window.billPayListComponent = Vue.extend({
     methods: {
 
         removeBill: function(bill){
-            var resource = this.$resource('bills{/id}');
+            var self = this;
             var confirmed = confirm('Deseja remover a conta da lista?');
             if (confirmed){
-                resource.delete({id: bill.id}).then(function (response) {
-                    this.bills.$remove(bill);
-                    this.$dispatch('change-status');
+                Bill.delete({id: bill.id}).then(function (response) {
+                    self.bills.$remove(bill);
+                    self.$dispatch('change-status');
                 });
             }
         },

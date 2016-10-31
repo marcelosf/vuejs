@@ -22,12 +22,6 @@ window.billPayComponent = Vue.extend({
     
     `,
 
-    http: {
-
-        root: 'http://192.168.10.10:8000/api'
-
-    },
-
     data: function () {
 
         return {
@@ -60,9 +54,9 @@ window.billPayComponent = Vue.extend({
         },
 
         updateStatus: function () {
-            var resource = this.$resource('bills{/id}');
-            resource.query().then(function (response) {
-                this.calculateStatus(response.data);
+            var self = this;
+            Bill.query().then(function (response) {
+                self.calculateStatus(response.data);
             });
 
             this.$http.get('bills').then(function (response) {
