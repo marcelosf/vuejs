@@ -1,5 +1,7 @@
 "use strict";
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 Vue.filter('doneLabel', function (value) {
 
     if (value == 0) {
@@ -46,3 +48,18 @@ function getStatus(value) {
 
     return { class: statusClass, message: statusMessage };
 }
+
+Vue.filter('numberFormat', {
+    read: function read(value) {
+        var number = 0;
+        if (value && (typeof value === "undefined" ? "undefined" : _typeof(value)) !== undefined) {
+            number = value.toString().match(/\d+(\.{1}\d{1,2}){0,1}/g)[0] || 0;
+        }
+        return new Intl.NumberFormat('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            style: 'currency',
+            currency: 'BRL'
+        }).format(number);
+    }
+});

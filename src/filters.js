@@ -49,3 +49,18 @@ function getStatus(value){
 
     return {class: statusClass, message: statusMessage};
 }
+
+Vue.filter('numberFormat', {
+    read(value){
+        let number = 0;
+        if(value && typeof value !== undefined){
+            number = value.toString().match(/\d+(\.{1}\d{1,2}){0,1}/g)[0] || 0;
+        }
+        return new Intl.NumberFormat('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            style: 'currency',
+            currency: 'BRL'
+        }).format(number);
+    }
+});
