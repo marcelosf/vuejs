@@ -15,7 +15,7 @@ window.billPayComponent = Vue.extend({
             
            <h1> {{ title }} </h1>
            <h3 :class="status | statusClass">{{ status | statusMessage }}</h3>
-           <h3>{{ total | currency 'R$ ' }}</h3>
+           <h3>{{ total | numberFormat }}</h3>
            
            <menu-component></menu-component>
            <router-view></router-view> 
