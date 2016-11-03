@@ -62,5 +62,15 @@ Vue.filter('numberFormat', {
             style: 'currency',
             currency: 'BRL'
         }).format(number);
+    },
+
+    write(value){
+        let number = 0;
+        if(value.length > 0) {
+            number = value.replace(/[^\d\,]/g, '')
+                .replace(/\,/g, '.')
+            number = isNaN(number) ? 0 : parseFloat(number);
+        }
+        return number;
     }
 });
