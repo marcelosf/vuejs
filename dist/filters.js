@@ -89,5 +89,12 @@ Vue.filter('dateFormat', {
         }
         return value;
     },
-    write: function write(value) {}
+    write: function write(value) {
+        var number = 0;
+        if (value.length > 0) {
+            number = value.replace(/[^\d\,]/g, '').replace(/\,/g, '.');
+            number = isNaN(number) ? 0 : parseFloat(number);
+        }
+        return number;
+    }
 });

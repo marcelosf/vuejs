@@ -1,0 +1,211 @@
+[33mcommit d6b2520624c53981248d940a87f232173ac39816[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Thu Nov 3 16:00:21 2016 +0000
+
+    Two-way filters - read e Intl.DateTimeFormat
+
+[33mcommit 61f5d5fc642279ec061c99e80617d59299744994[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Thu Nov 3 15:11:03 2016 +0000
+
+    Two-way filters e write - numberFormat
+
+[33mcommit 866f08277cc2f0cb8155916ea137b88f536a4983[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Mon Oct 31 15:36:40 2016 +0000
+
+    Two-way filters - read e Int.NumberFormat
+
+[33mcommit 1564df458be68c255b13b7076ada8bdf03a34f97[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Mon Oct 31 14:45:14 2016 +0000
+
+    erro
+
+[33mcommit 2e4223267a502f9bde4560a0050417c04da09447[m
+Merge: 00f8909 28cbf12
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Mon Oct 31 14:16:22 2016 +0000
+
+    resolvendo conflitos
+
+[33mcommit 00f89092877e854ef99eaa931aa68f1d13196c2a[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Mon Oct 31 14:05:13 2016 +0000
+
+    modificando bill-pay-component
+
+[33mcommit 28cbf1270e2f2d6a181da934ac9b46a2e9254723[m
+Author: marcelosf <schneider.fei@gmail.com>
+Date:   Sun Oct 30 21:25:29 2016 +0000
+
+    Usando o Babel na aplicação e aplicando o let
+
+[33mcommit 54be64941059de59200d09b71b3afc962d566443[m
+Merge: 6025b2d 182d941
+Author: marcelosf <schneider.fei@gmail.com>
+Date:   Mon Oct 10 21:39:36 2016 +0000
+
+    Projeto Vue
+    
+    	modified:   .gitignore
+    	modified:   .vagrant/machines/default/virtualbox/action_set_name
+    	deleted:    vue-bills-api/.gitignore
+    	modified:   vue-bills-api/bills.json
+    	modified:   vue-bills-api/bills_receive.json
+
+[33mcommit 6025b2d3f4e0a1c3bbde6f9a402c63fce54ae9d7[m
+Author: vagrant <vagrant@vuejs>
+Date:   Mon Oct 10 20:22:33 2016 +0000
+
+    Projeto vue
+
+[33mcommit 182d94162163345cc90eb63c2a357d6340c21de2[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Tue Sep 27 16:59:48 2016 +0000
+
+    Trabalhando com resources
+
+[33mcommit fa2629aac8859cdb96b2b7730445f1697627d167[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Tue Sep 27 16:40:36 2016 +0000
+
+    Refatorando status
+
+[33mcommit 94c1c06a2305679736205f2bba5592928ced7a93[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Mon Sep 26 17:50:33 2016 +0000
+
+    Refatorando status
+
+[33mcommit 812b542aa2a7ff65515b7daf4b73964fbd51a397[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Thu Sep 22 17:22:33 2016 +0000
+
+    Refatorando status
+
+[33mcommit 8890ab91f2866408d05f212bd3027fcc02370939[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Wed Sep 21 23:21:27 2016 +0000
+
+    Listando contas a pagar
+
+[33mcommit cba21a0f46222fe5f3da1e0b476131a8e5240bfe[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Wed Sep 21 22:22:37 2016 +0000
+
+    Navegação e SPA
+
+[33mcommit 6bc39fbc13cef1558326d992be273263731c18c1[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Wed Sep 21 20:51:52 2016 +0000
+
+    Terminando rotas alinhadas
+
+[33mcommit ad7b5bd202e47a8eeb0c44ea50f119ee6a366d83[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Tue Sep 20 17:11:10 2016 +0000
+
+    Iniciando rotas alinhadas
+
+[33mcommit 77e49af28ace388fd296044742da6954e1af1a42[m
+Author: vagrant <vagrant@vuejs>
+Date:   Mon Sep 19 01:44:42 2016 +0000
+
+    Acabou a energia elétrica
+
+[33mcommit 2b29cbfe27945df9d7b8bce828392cba53f5e695[m
+Author: vagrant <vagrant@vuejs>
+Date:   Sun Sep 18 01:31:07 2016 +0000
+
+    Refatorando component de criaçao de conta
+
+[33mcommit 452471ebd05f94e717b98f45d71f6e85a1529f40[m
+Author: vagrant <vagrant@vuejs>
+Date:   Sat Sep 17 02:02:15 2016 +0000
+
+    Rotas nomeadas e v-link
+
+[33mcommit bfa9ff008d43e5927b4fd8cc71b9557d80c183fe[m
+Author: vagrant <vagrant@vuejs>
+Date:   Fri Sep 16 01:34:02 2016 +0000
+
+    Organizando componentes
+
+[33mcommit 6a427595a53f476e6ad4a83cdce97bddf6f111b3[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Thu Sep 15 18:29:00 2016 +0000
+
+    eventos
+
+[33mcommit 9b1b7ed72f88df00553ac4b2e200b597e3e6c5ed[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Thu Sep 15 16:08:30 2016 +0000
+
+    Trabalhando com eventos entre componentes
+
+[33mcommit c8cad1e365e1b246221cad62b9c8bd78ffdaf208[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Thu Sep 15 15:21:03 2016 +0000
+
+    Trabalhando com eventos entre componentes
+
+[33mcommit 5eb55012293a60f3ee548239859f2b8433c5112b[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Tue Sep 13 16:18:14 2016 +0000
+
+    Property binding - two way data binding
+
+[33mcommit 832c61f1e8b4b42ad0886cd307521a57308604a0[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Tue Sep 13 16:11:20 2016 +0000
+
+    Conectando lista de contas com cadastro de uma conta
+
+[33mcommit 248ff042b2a2459d14f51000867c342ffe0b4769[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Mon Sep 12 17:16:58 2016 +0000
+
+    Criando BillCreateComponent
+
+[33mcommit 62d4349a3812116af9db12af5ea7b80290edc027[m
+Author: vagrant <vagrant@vuejs>
+Date:   Sun Sep 11 22:32:54 2016 +0000
+
+    Comunicação entre components pais e filhos
+
+[33mcommit aa3c23b8b07a702207768105232c9c6345e17f3a[m
+Author: vagrant <vagrant@vuejs>
+Date:   Sun Sep 11 22:24:27 2016 +0000
+
+    Criando Menu Component
+
+[33mcommit a4ddc8f26e55b5b267128fb6032ddb722433c764[m
+Author: vagrant <vagrant@vuejs>
+Date:   Sun Sep 11 21:59:18 2016 +0000
+
+    Criando Primeiro Webcomponent
+
+[33mcommit 422cbe01e0d665f495121cce137b83b046968b78[m
+Author: vagrant <vagrant@vuejs>
+Date:   Sun Sep 11 21:33:22 2016 +0000
+
+    Os filtros foram colocados no início
+
+[33mcommit a444f75a87555442fc01f514f8a4af4be4e0f253[m
+Author: vagrant <vagrant@vuejs>
+Date:   Sun Sep 11 20:48:36 2016 +0000
+
+    Correção Projeto
+
+[33mcommit 3b7d72ebbc763ee10154f1405b5838d0a4abd59d[m
+Author: Marcelo Schneider <schneider.fei@gmail.com>
+Date:   Tue Sep 6 18:20:03 2016 +0000
+
+    manipulando estruturas básicas
+
+[33mcommit 2cc1beb09a9397f063a696663a14480a8c16cab1[m
+Author: vagrant <vagrant@homestead>
+Date:   Thu Sep 1 17:02:30 2016 +0000
+
+    Conceitos Básicos
