@@ -12,7 +12,7 @@ window.billComponent = Vue.extend({
             <router-view></router-view>
     `,
     
-    data: function () {
+    data() {
         
         return {
             

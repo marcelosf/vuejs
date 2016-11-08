@@ -12,5 +12,4 @@ window.billComponent = Vue.extend({
 
         };
     }
-
 });

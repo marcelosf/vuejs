@@ -12,7 +12,7 @@ window.billPayMenuComponent = Vue.extend({
     
     `,
     
-    data: function () {
+    data() {
         
         return {
             

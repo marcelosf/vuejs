@@ -1,12 +1,14 @@
-Vue.filter('doneLabel', function(value){
+Vue.filter('doneLabel', (value) => value == 0 ? "Não Paga" : "Paga");
 
-    if(value == 0){
-        return "Não paga";
-    }else{
-        return "Paga";
-    }
-
-});
+// Vue.filter('doneLabel', function(value){
+//
+//     if(value == 0){
+//         return "Não paga";
+//     }else{
+//         return "Paga";
+//     }
+//
+// });
 
 Vue.filter('paidLabel', function (value) {
 

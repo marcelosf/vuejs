@@ -9,31 +9,28 @@ window.billPayListComponent = Vue.extend({
             bills: []
         };
     },
-
     created: function created() {
-        var self = this;
-        Bill.query('bills').then(function (response) {
-            self.bills = response.data;
+        var _this = this;
+
+        Bill.query().then(function (response) {
+            _this.bills = response.data;
         });
     },
 
-    methods: {
 
+    methods: {
         removeBill: function removeBill(bill) {
-            var _this = this;
+            var _this2 = this;
 
             var confirmed = confirm('Deseja remover a conta da lista?');
             if (confirmed) {
-                (function () {
-                    var self = _this;
-                    Bill.delete({ id: bill.id }).then(function (response) {
-                        self.bills.$remove(bill);
-                        self.$dispatch('change-info');
-                    });
-                })();
+                //let self = this;
+                Bill.delete({ id: bill.id }).then(function (response) {
+                    _this2.bills.$remove(bill);
+                    _this2.$dispatch('change-info');
+                });
             }
         },
-
         baixa: function baixa(bill) {
             if (bill.done == 0) {
                 bill.done = 1;
@@ -45,7 +42,6 @@ window.billPayListComponent = Vue.extend({
                 self.$dispatch('change-info');
             });
         }
-
     }
 
 });

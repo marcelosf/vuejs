@@ -3,13 +3,18 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 Vue.filter('doneLabel', function (value) {
-
-    if (value == 0) {
-        return "Não paga";
-    } else {
-        return "Paga";
-    }
+    return value == 0 ? "Não Paga" : "Paga";
 });
+
+// Vue.filter('doneLabel', function(value){
+//
+//     if(value == 0){
+//         return "Não paga";
+//     }else{
+//         return "Paga";
+//     }
+//
+// });
 
 Vue.filter('paidLabel', function (value) {
 
