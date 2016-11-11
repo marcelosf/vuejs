@@ -56,16 +56,19 @@ function getStatus(value) {
 
 Vue.filter('numberFormat', {
     read: function read(value) {
+        var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'pt-BR';
+        var currency = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "BRL";
+
         var number = 0;
         if (value && (typeof value === "undefined" ? "undefined" : _typeof(value)) !== undefined) {
             var numberRegex = value.toString().match(/\d+(\.{1}\d{1,2}){0,1}/g);
             number = numberRegex ? numberRegex[0] : numberRegex;
         }
-        return new Intl.NumberFormat('pt-BR', {
+        return new Intl.NumberFormat(locale, {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
             style: 'currency',
-            currency: 'BRL'
+            currency: currency
         }).format(number);
     },
     write: function write(value) {
@@ -80,6 +83,8 @@ Vue.filter('numberFormat', {
 
 Vue.filter('dateFormat', {
     read: function read(value) {
+        var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'pt-BR';
+
         if (value && (typeof value === "undefined" ? "undefined" : _typeof(value)) !== undefined) {
             if (!(value instanceof Date)) {
                 var dateRegex = value.match(/\d{4}\-\d{2}\-\d{2}/g) || null;
@@ -90,16 +95,23 @@ Vue.filter('dateFormat', {
                     return value;
                 }
             }
-            return Intl.DateTimeFormat('pt-BR').format(value).split(' ')[0];
+            return Intl.DateTimeFormat(locale).format(value).split(' ')[0];
         }
         return value;
     },
-    write: function write(value) {
-        var number = 0;
-        if (value.length > 0) {
-            number = value.replace(/[^\d\,]/g, '').replace(/\,/g, '.');
-            number = isNaN(number) ? 0 : parseFloat(number);
+    write: function write(value, locale) {
+        if (value && (typeof value === "undefined" ? "undefined" : _typeof(value)) !== undefined) {
+            var date = value.replace(/[^\d]/g, '-');
+            var dateParts = date.split('-');
+            switch (locale) {
+                case "pt-BR":
+                    date = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
+                    break;
+                case "en-US":
+                    date = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1];
+                    break;
+            }
+            return date;
         }
-        return number;
     }
 });

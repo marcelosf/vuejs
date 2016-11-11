@@ -25,9 +25,9 @@ window.billPayListComponent = Vue.extend({
                    <tbody>
                    <tr v-for="(index,o) in bills">
                        <td>{{ index + 1 }}</td>
-                       <td>{{ o.date_due | dateFormat }}</td>
+                       <td>{{ o.date_due | dateFormat 'pt-BR' }}</td>
                        <td>{{ o.name }}</td>
-                       <td>{{ o.value | numberFormat }}</td>
+                       <td>{{ o.value | numberFormat 'pt-BR' 'USD' }}</td>
                        <td :class="{'pago': o.done, 'nao-pago': !o.done}">
                            {{ o.done | doneLabel }}
                        </td>
