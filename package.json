@@ -6,6 +6,7 @@
   "dependencies": {
     "babel": "^6.5.2",
     "lite-server": "^2.2.2",
+    "materialize-css": "^0.97.8",
     "vue": "^1.0.26",
     "vue-resource": "^1.0.2",
     "vue-route": "^1.5.1",
