@@ -105,13 +105,17 @@ Vue.filter('dateFormat', {
             var dateParts = date.split('-');
             switch (locale) {
                 case "pt-BR":
+                    console.log(locale);
                     date = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
                     break;
                 case "en-US":
+                    console.log(locale);
                     date = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1];
                     break;
             }
+            console.log(date);
             return date;
         }
+        return value;
     }
 });
