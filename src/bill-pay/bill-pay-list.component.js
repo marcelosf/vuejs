@@ -12,8 +12,8 @@ window.billPayListComponent = Vue.extend({
                 </style> 
                     <div class="container">
                         <div class="row">
-                        <div class="col s10">
-                             <table border="1" cellpadding="10">
+                        <div>
+                             <table class="centered highlight z-depth-3" cellpadding="10">
                                        <thead>
                                        <tr>
                                            <td>#</td>
@@ -42,9 +42,6 @@ window.billPayListComponent = Vue.extend({
                                        </tr>
                                        </tbody>
                                    </table>
-                        </div>
-                        <div class="col s2">
-                            Texto
                         </div>
                            
                         </div>
