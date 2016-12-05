@@ -19,8 +19,9 @@ window.billPayComponent = Vue.extend({
                    
                    <div class="row">
                         <div class="col s5 offset-s7 z-depth-1">
-                            <h3>{{ total | numberFormat }}</h3>
+                            <h3>{{ total | numberFormat }}<i class="material-icons blue-text left">add_circle</i></h3>
                         </div>
+                        
                    </div>
                 
                 </div>
