@@ -1,31 +1,37 @@
 window.billPayComponent = Vue.extend({
 
-    components: {
-        'menu-component': billPayMenuComponent,
-    },
-
     template: `
             
-            <style type="text/css">
-                
-                .sem-contas {
-                    color: darkgray;
-                }
-            </style> 
+           
             <div class="section">
                 <div class="container">
-                   <h1> {{ title }} </h1>
-                   <h3 :class="status | statusClass">{{ status | statusMessage }}</h3>
-                   
+                   <h4> {{ title }} </h4>
                    <div class="row">
-                        <div class="col s5 offset-s7 z-depth-1">
-                            <h3>{{ total | numberFormat }}<i class="material-icons blue-text left">add_circle</i></h3>
+                        <div class="col s6">
+                            <div class="card z-depth-2 {{ status | statusClass }}" >
+                                <div class="card-content white-text">
+                                    <p class="card-title">
+                                        <i class="material-icons">account_balance</i>
+                                    </p>
+                                    <b>{{ status | statusMessage }}</b>
+                                </div>
+                            </div>
                         </div>
-                        
+                        <div class="col s6">
+                            <div class="card z-depth-2" >
+                                <div class="card-content">
+                                    <p class="card-title">
+                                        <i class="material-icons">payment</i>
+                                    </p>
+                                    <b>{{ total | numberFormat }}</b>
+                                </div>
+                            </div>
+                        </div>
                    </div>
-                
                 </div>
             </div>
+           
+           <div class="divider"></div>
            
            <router-view></router-view> 
           

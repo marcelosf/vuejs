@@ -1,19 +1,13 @@
 window.billPayListComponent = Vue.extend({
 
     template: `
-                
-               <style type="text/css">
-                    .pago, .em-dia{
-                        color: green;
-                    }
-                    .nao-pago, .devendo{
-                        color: red;
-                    }
-                </style> 
                     <div class="container">
+                    
                         <div class="row">
                         <div>
-                             <table class="centered highlight z-depth-3" cellpadding="10">
+                             <button class="btn btn-large waves-effect">Meu botão</button>
+                             <h2>Minhas Contas a Pagar</h2>
+                             <table class="striped centered highlight z-depth-3" cellpadding="10">
                                        <thead>
                                        <tr>
                                            <td>#</td>
@@ -31,13 +25,13 @@ window.billPayListComponent = Vue.extend({
                                            <td>{{ o.date_due | dateFormat 'en-US' }}</td>
                                            <td>{{ o.name }}</td>
                                            <td>{{ o.value | numberFormat 'en-US' 'USD' }}</td>
-                                           <td :class="{'pago': o.done, 'nao-pago': !o.done}">
+                                           <td class="white-text" :class="{'green lighten-2': o.done, 'red lighten-2': !o.done}">
                                                {{ o.done | doneLabel }}
                                            </td>
                                            <td>
-                                               <a v-link="{name: 'bill-pay.update', params: {id: o.id }}">Editar</a>
+                                               <a v-link="{name: 'bill-pay.update', params: {id: o.id }}">Editar|</a>
                                                <a href="#" @click.prevent="$parent.removeBill(o)">Remover</a>
-                                               <a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>
+                                               <!--<a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>-->
                                            </td>
                                        </tr>
                                        </tbody>
@@ -47,6 +41,20 @@ window.billPayListComponent = Vue.extend({
                         </div>
                         </div>
                         
+                        <div>
+                            <a id="btn-modal" href="#my-modal" class="btn waves-effect">Abrir Modal</a>
+                            <div id="my-modal" class="modal">
+                                <div class="modal-content">
+                                    <h2>Modal Content</h2>
+                                    <p>Content text</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-flat green">Ok</button>
+                                </div>
+                            
+                            </div>
+                        
+                        </div>
                        
     
     `,
@@ -58,10 +66,13 @@ window.billPayListComponent = Vue.extend({
     },
 
     created() {
+
         Bill.query().then((response) => {
             this.bills = response.data;
         });
-
+        $(document).ready(function () {
+            $("#btn-modal").modal();
+        });
     } ,
 
 

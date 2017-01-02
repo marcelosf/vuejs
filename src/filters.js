@@ -36,15 +36,15 @@ function getStatus(value){
   var  statusMessage = '';
 
     if (value >= 0 ) {
-        statusClass = 'devendo';
-        statusMessage = 'Existem ' + value + ' contas a serem pagas';
+        statusClass = 'red';
+        statusMessage = value + ' Conta(s) a serem pagas';
     }
     if (value == 0 ) {
-        statusClass = 'em-dia';
-        statusMessage = 'Todas as contas estão pagas';
+        statusClass = 'blue';
+        statusMessage = 'Contas estão pagas';
     }
     if (value == 'false' ) {
-        statusClass = 'sem-contas';
+        statusClass = 'gray';
         statusMessage= 'Nenhuma conta cadastrada.';
     }
 

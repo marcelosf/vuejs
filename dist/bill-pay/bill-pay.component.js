@@ -2,11 +2,7 @@
 
 window.billPayComponent = Vue.extend({
 
-    components: {
-        'menu-component': billPayMenuComponent
-    },
-
-    template: '\n            \n            <style type="text/css">\n                \n                .sem-contas {\n                    color: darkgray;\n                }\n            </style> \n            <div class="section">\n                <div class="container">\n                   <h1> {{ title }} </h1>\n                   <h3 :class="status | statusClass">{{ status | statusMessage }}</h3>\n                   \n                   <div class="row">\n                        <div class="col s5 offset-s7 z-depth-1">\n                            <h3>{{ total | numberFormat }}<i class="material-icons blue-text left">add_circle</i></h3>\n                        </div>\n                        \n                   </div>\n                \n                </div>\n            </div>\n           \n           <router-view></router-view> \n          \n    \n    ',
+    template: '\n            \n           \n            <div class="section">\n                <div class="container">\n                   <h4> {{ title }} </h4>\n                   <div class="row">\n                        <div class="col s6">\n                            <div class="card z-depth-2 {{ status | statusClass }}" >\n                                <div class="card-content white-text">\n                                    <p class="card-title">\n                                        <i class="material-icons">account_balance</i>\n                                    </p>\n                                    <b>{{ status | statusMessage }}</b>\n                                </div>\n                            </div>\n                        </div>\n                        <div class="col s6">\n                            <div class="card z-depth-2" >\n                                <div class="card-content">\n                                    <p class="card-title">\n                                        <i class="material-icons">payment</i>\n                                    </p>\n                                    <b>{{ total | numberFormat }}</b>\n                                </div>\n                            </div>\n                        </div>\n                   </div>\n                </div>\n            </div>\n           \n           <div class="divider"></div>\n           \n           <router-view></router-view> \n          \n    \n    ',
 
     data: function data() {
 
