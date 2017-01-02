@@ -2,15 +2,25 @@ window.modalComponent = Vue.extend({
 
     template: `
         
-        <div>Laravel com Vue</div>
-        <slot>Default</slot>
+       <div :id="modal.id" class="modal">
+            <div class="modal-content">
+                <slot name="content"></slot>
+            </div>
+            <div class="modal-footer">
+                <slot name="footer"></slot>
+            </div>
+       </div>
 
     `,
+
+    props: ['modal'],
 
     data() {
 
         return {
-
+            modal: {
+                id: ''
+            }
         };
 
     }

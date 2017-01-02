@@ -1,5 +1,9 @@
 window.billPayListComponent = Vue.extend({
 
+    components: {
+        'modal': modalComponent
+    },
+
     template: `
                     <div class="container">
                     
@@ -30,7 +34,7 @@ window.billPayListComponent = Vue.extend({
                                                </td>
                                                <td>
                                                    <a v-link="{name: 'bill-pay.update', params: {id: o.id }}">Editar|</a>
-                                                   <a href="#" @click.prevent="$parent.removeBill(o)">Remover</a>
+                                                   <a href="#" @click.prevent="openModalDelete()">Remover</a>
                                                    <!--<a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>-->
                                                </td>
                                            </tr>
@@ -40,37 +44,32 @@ window.billPayListComponent = Vue.extend({
                         </div>
                     </div>
                        
-                    <a id="btn-modal" href="#meu-modal" class="btn waves-effect">Abrir Modal</a>
-                    <button data-target="meu-modal" class="btn waves-effect">Abrir Modal</button>
-                       
-                    <div id="meu-modal" class="modal">
-                        <div class="modal-content">
-                            <h2>Meu Primeiro Modal</h2>
-                            <p>Texto .....</p>
+                    <modal :modal="modal">
+                        <div slot="content">
+                            <h4>Mensagem de confirmação</h4>
+                            <p><strong>Deseja destruir esta conta?</strong></p>
                         </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-flat green modal-action modal-close">Ok</button>
+                        <div slot="footer">
+                            <button class="btn waves-effect green lighten-2 modal-close modal-action">Ok</button>
+                            <button class="btn waves-red modal-close modal-action">Cancelar</button>
                         </div>
-                    </div>
+                    </modal>
     `,
 
     data() {
         return {           
-            bills: []
+            bills: [],
+            modal: {
+                id: 'modal-delete'
+            }
         }       
     },
 
     created() {
-        $(document).ready(function(){
-
-            $('#meu-modal').modal();
-
-        });
 
         Bill.query().then((response) => {
             this.bills = response.data;
         });
-
 
     } ,
 
@@ -98,8 +97,16 @@ window.billPayListComponent = Vue.extend({
             Bill.update({id: bill.id}, bill).then(function (response){
                 self.$dispatch('change-info');
             });
+        },
+
+        openModalDelete() {
+
+            $('#modal-delete').modal();
+
+            $('#modal-delete').modal('open');
+
         }
 
-    },
+    }
 
 });
