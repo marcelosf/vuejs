@@ -34,7 +34,7 @@ window.billPayListComponent = Vue.extend({
                                                </td>
                                                <td>
                                                    <a v-link="{name: 'bill-pay.update', params: {id: o.id }}">Editar|</a>
-                                                   <a href="#" @click.prevent="openModalDelete()">Remover</a>
+                                                   <a href="#" @click.prevent="openModalDelete(o)">Remover</a>
                                                    <!--<a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>-->
                                                </td>
                                            </tr>
@@ -47,11 +47,16 @@ window.billPayListComponent = Vue.extend({
                     <modal :modal="modal">
                         <div slot="content">
                             <h4>Mensagem de confirmação</h4>
-                            <p><strong>Deseja destruir esta conta?</strong></p>
+                            <p><strong>Deseja remover esta conta?</strong></p>
+                            <div class="divider"></div>
+                            <p>Nome: <strong>{{ billToDelete.name }}</strong></p>
+                            <p>Valor: <strong>{{ billToDelete.value | numberFormat }}</strong></p>
+                            <p>Data: <strong>{{ billToDelete.date_due | dateFormat }}</strong></p>
+                            
                         </div>
                         <div slot="footer">
-                            <button class="btn waves-effect green lighten-2 modal-close modal-action">Ok</button>
-                            <button class="btn waves-red modal-close modal-action">Cancelar</button>
+                            <button class="btn btn-flat waves-effect green lighten-2 modal-close modal-action" @click="removeBill()">Ok</button>
+                            <button class="btn btn-flat waves-red modal-close modal-action white">Cancelar</button>
                         </div>
                     </modal>
     `,
@@ -59,6 +64,7 @@ window.billPayListComponent = Vue.extend({
     data() {
         return {           
             bills: [],
+            billToDelete: null,
             modal: {
                 id: 'modal-delete'
             }
@@ -76,15 +82,14 @@ window.billPayListComponent = Vue.extend({
 
     methods: {
 
-        removeBill(bill){
-            let confirmed = confirm('Deseja remover a conta da lista?');
-            if (confirmed){
-                //let self = this;
-                Bill.delete({id: bill.id}).then((response) => {
-                    this.bills.$remove(bill);
-                    this.$dispatch('change-info');
-                });
-            }
+        removeBill(){
+            //let self = this;
+            Bill.delete({id: this.billToDelete.id}).then((response) => {
+                this.bills.$remove(this.billToDelete);
+                this.billToDelete = null;
+                this.$dispatch('change-info');
+
+            });
         },
         
         baixa(bill){
@@ -99,7 +104,9 @@ window.billPayListComponent = Vue.extend({
             });
         },
 
-        openModalDelete() {
+        openModalDelete(bill) {
+
+            this.billToDelete = bill;
 
             $('#modal-delete').modal();
 
