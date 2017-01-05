@@ -6,7 +6,7 @@ window.billComponent = Vue.extend({
             </li>
         </ul>
         <div class="navbar-fixed">
-            <nav>
+            <nav >
                     <div class="nav-wrapper container">
                        <a href="#" class="brand-logo right">Code Contas</a>
                         
@@ -34,6 +34,7 @@ window.billComponent = Vue.extend({
                     </div>
             </nav>
         </div>
+        
             <router-view></router-view>
     `,
 

@@ -14,15 +14,15 @@
   },
   "devDependencies": {
     "babel": "^6.5.2",
-    "babel-preset-es2015": "^6.18.0"
+    "babel-preset-es2015": "^6.18.0",
+    "gulp": "^3.9.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "CHOKIDAR_USEPOLLING=true babel src --out-dir dist/ --watch",
     "sass": "node-sass ./src/sass -o ./dist/css",
     "sass:w": "node-sass ./src/sass -o ./dist/css -w",
-    "start": "concurrently \"npm run babel\" \"lite-server\" \"npm run sass\" \"npm run sass:w\""
-
+    "start": "concurrently \"npm run babel\"  \"npm run sass\" \"npm run sass:w\" \"gulp\" \"lite-server\""
   },
   "repository": {
     "type": "git",

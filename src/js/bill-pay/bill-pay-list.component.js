@@ -9,7 +9,6 @@ window.billPayListComponent = Vue.extend({
                     
                         <div class="row">
                             <div>
-                                 <button class="btn btn-large waves-effect">Meu botão</button>
                                  <h2>Minhas Contas a Pagar</h2>
                                  <table class="striped centered highlight z-depth-3" cellpadding="10">
                                        <thead>
