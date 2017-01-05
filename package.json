@@ -18,7 +18,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "CHOKIDAR_USEPOLLING=true babel src --out-dir dist --watch"
+    "babel": "CHOKIDAR_USEPOLLING=true babel src --out-dir dist/ --watch",
+    "sass": "node-sass ./src/sass -o ./dist/css",
+    "sass:w": "node-sass ./src/sass -o ./dist/css -w",
+    "start": "concurrently \"npm run babel\" \"lite-server\" \"npm run sass\" \"npm run sass:w\""
+
   },
   "repository": {
     "type": "git",

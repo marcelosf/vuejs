@@ -79,7 +79,7 @@ window.billPayCreateComponent = Vue.extend({
     },
 
     methods: {
-
+ 
         submit(){
             var data = this.bill.toJSON();
             if(this.formType == "insert"){
