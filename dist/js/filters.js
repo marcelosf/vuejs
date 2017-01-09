@@ -39,8 +39,8 @@ function getStatus(value) {
     var statusMessage = '';
 
     if (value >= 0) {
-        statusClass = 'red';
-        statusMessage = value + ' Conta(s) a serem pagas';
+        statusClass = 'new';
+        statusMessage = ' Conta(s) a serem pagas';
     }
     if (value == 0) {
         statusClass = 'blue';

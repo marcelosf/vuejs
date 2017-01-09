@@ -8,24 +8,16 @@ window.billPayComponent = Vue.extend({
                    <h4> {{ title }} </h4>
                    <div class="row">
                         <div class="col s6">
-                            <div class="card z-depth-2 {{ status | statusClass }}" >
-                                <div class="card-content white-text">
-                                    <p class="card-title">
-                                        <i class="material-icons">account_balance</i>
-                                    </p>
-                                    <b>{{ status | statusMessage }}</b>
-                                </div>
-                            </div>
+                            <div class="collection">
+                                <a href="#!" class="collection-item"><span class="badge">{{ status }}</span><i class="material-icons left">account_balance</i>{{ status | statusMessage }}</a>
+                            </div>                             
                         </div>
+                        
                         <div class="col s6">
-                            <div class="card z-depth-2" >
-                                <div class="card-content">
-                                    <p class="card-title">
-                                        <i class="material-icons">payment</i>
-                                    </p>
-                                    <b>{{ total | numberFormat }}</b>
-                                </div>
-                            </div>
+                            <div class="collection">
+                                <a href="#!" class="collection-item"><span class="badge">{{ total | numberFormat }}</span><i class="material-icons left">payment</i>Total</a>
+                            </div>  
+                            
                         </div>
                    </div>
                 </div>
