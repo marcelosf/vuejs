@@ -1601,6 +1601,9 @@
 .transparent-text {
   color: transparent !important; }
 
+.modal {
+  max-height: 45% !important; }
+
 .materialize-red {
   background-color: #e51c23 !important; }
 
