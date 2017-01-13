@@ -1,4 +1,4 @@
-window.modalComponent = Vue.extend({
+module.exports = {
 
     template: `
         
@@ -24,4 +24,4 @@ window.modalComponent = Vue.extend({
         };
 
     }
-});
+};

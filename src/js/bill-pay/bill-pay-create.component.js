@@ -8,7 +8,9 @@ const names = [
     'Gasolina'
 ];
 
-window.billPayCreateComponent = Vue.extend({
+import BillPay from '../bill';
+
+module.exports = {
 
     template: `
 
@@ -105,4 +107,4 @@ window.billPayCreateComponent = Vue.extend({
         }
     }
 
-});
+};

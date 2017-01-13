@@ -1,4 +1,4 @@
-window.billPayComponent = Vue.extend({
+module.exports = {
 
     template: `
             
@@ -83,4 +83,4 @@ window.billPayComponent = Vue.extend({
         }
     }
     
-});
+};

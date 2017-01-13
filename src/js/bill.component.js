@@ -1,4 +1,4 @@
-window.billComponent = Vue.extend({
+module.exports = {
     template: `
         <ul v-bind:id="o.id" class="dropdown-content" v-for="o in menusDropdown">
             <li v-for="item in o.items">
@@ -87,4 +87,4 @@ window.billComponent = Vue.extend({
         
     },
     
-});
+};

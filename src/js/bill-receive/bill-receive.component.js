@@ -1,4 +1,6 @@
-window.billReceiveComponent = Vue.extend({
+import billReceiveMenuComponent from './bill-receive-menu.component';
+
+module.exports = {
 
     components: {
         'menu-component': billReceiveMenuComponent,
@@ -78,4 +80,4 @@ window.billReceiveComponent = Vue.extend({
         }
     }
 
-});
+};

@@ -1,4 +1,4 @@
-window.billReceiveCreateComponent = Vue.extend({
+module.exports = {
 
     template: `
           <form name="form" @submit.prevent="submit">
@@ -83,4 +83,4 @@ window.billReceiveCreateComponent = Vue.extend({
         }
     }
 
-});
+};

@@ -1,4 +1,4 @@
-window.billReceiveListComponent = Vue.extend({
+module.exports = {
 
     template: `
                 
@@ -86,4 +86,4 @@ window.billReceiveListComponent = Vue.extend({
 
     },
 
-});
+};
