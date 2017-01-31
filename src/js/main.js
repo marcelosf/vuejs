@@ -1,26 +1,23 @@
-require('./bill');
-require('./filters');
-require('./resources');
-
+require('./bootstrap');
 require([
+    './bill.component',
     './bill-pay/bill-pay.component',
     './bill-pay/bill-pay-list.component',
     './bill-pay/bill-pay-create.component',
-    './bill.component',
     './bill-receive/bill-receive.component',
     './bill-receive/bill-receive-list.component',
     './bill-receive/bill-receive-create.component',
 
 ], function (
+    billComponent,
     billPayComponent,
     billPayListComponent,
     billPayCreateComponent,
-    billComponent,
     billReceiveComponent,
     billReceiveListComponent,
     billReceiveCreateComponent,
 ) {
-
+    let VueRouter = require('vue-router');
     let router = new VueRouter();
 
     var mainComponent = Vue.extend({

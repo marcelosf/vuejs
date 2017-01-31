@@ -1,9 +1,15 @@
 'use strict';
 
-window.billReceiveComponent = Vue.extend({
+var _billReceiveMenu = require('./bill-receive-menu.component');
+
+var _billReceiveMenu2 = _interopRequireDefault(_billReceiveMenu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = {
 
     components: {
-        'menu-component': billReceiveMenuComponent
+        'menu-component': _billReceiveMenu2.default
     },
 
     template: '\n            \n            <style type="text/css">\n                \n                .sem-contas {\n                    color: darkgray;\n                }\n            </style> \n            \n           <h1> {{ title }} </h1>\n           <h3 :class="status | statusClass">{{ status | statusMessage }}</h3>\n           <h3>{{ total | currency \'R$ \' }}</h3>\n           \n           <menu-component></menu-component>\n           <router-view></router-view> \n          \n    \n    ',
@@ -63,4 +69,4 @@ window.billReceiveComponent = Vue.extend({
         }
     }
 
-});
+};

@@ -13,15 +13,17 @@ module.exports = {
 
     `,
 
-    props: ['modal'],
+    props: {
+        modal: {
+            type: Object,
+            default() {
+                return {
+                    id: ''
 
-    data() {
-
-        return {
-            modal: {
-                id: ''
+                }
             }
-        };
+        }
 
     }
-};
+
+}

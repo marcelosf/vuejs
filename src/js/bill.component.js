@@ -22,7 +22,7 @@ module.exports = {
                        
                        <ul class="left hide-on-med-and-down">
                            <li v-for="o in menus">
-                               <a v-if ="o.dropdownId" class="dropdown-button" href="!#" v-bind:data-activates="o.dropdownId">
+                               <a v-if ="o.dropdownId" class="dropdown-button" href="#!" v-bind:data-activates="o.dropdownId">
                                     {{ o.name }} <i class="material-icons right">arrow_drop_down</i>
                                </a>
                                <a v-else v-link="{name: o.routeName}">{{ o.name }}</a>
@@ -38,7 +38,7 @@ module.exports = {
             <router-view></router-view>
     `,
 
-    created(){
+    mounted(){
 
         $(document).ready(function() {
             $('.button-collapse').sideNav();

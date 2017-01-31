@@ -2,7 +2,9 @@
 
 var names = ['Conta de luz', 'Conta de água', 'Conta de telefone', 'Supermercado', 'Cartão de crédito', 'Empréstimo', 'Gasolina'];
 
-window.billPayCreateComponent = Vue.extend({
+var BillPay = require('../bill');
+
+module.exports = {
 
     template: '\n\n            <div class="container">\n                <div class="row">\n                \n                    <h2>Nova Conta</h2>\n                \n                    <form name="form" @submit.prevent="submit">\n                       \n                       <div class="row">\n                            <div class="input-field col s6">\n                                <label class="active">Vencimento:</label>\n                                <input type="text" v-model="bill.date_due | dateFormat \'en-US\'" placeholder="Informe a data"> \n                            </div>    \n                            <div class="input-field col s6">\n                                <label class="active">Valor:</label>\n                                <input type="text" v-model="bill.value | numberFormat"/>\n                            </div>\n                       </div>\n                       \n                       <div class="row">\n                            <div class="iput-field col s6">\n                               <label>Nome:</label>\n                               <select v-model="bill.name" id="name" class="browser-default">\n                                   <option v-for="o in names" :value="o">\n                                       {{ o }}\n                                   </option>\n                               </select>\n                            </div>     \n                            <div class="input-field col s6">\n                                <input type="checkbox" v-model="bill.done" id="pago"/>\n                                <label for="pago">Pago?</label>\n                            </div>\n                       </div>\n                       <div class="row">\n                            <input type="submit" value="Enviar" class="btn btn-large right" />\n                       </div>\n                    </form>\n                </div>\n            </div>\n          \n    ',
 
@@ -57,4 +59,4 @@ window.billPayCreateComponent = Vue.extend({
         }
     }
 
-});
+};

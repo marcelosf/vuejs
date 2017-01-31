@@ -46,7 +46,7 @@ module.exports = {
                     </div>
                        
                     <modal :modal="modal">
-                        <div slot="content">
+                        <div slot="content" v-if="billToDelete">
                             <h4>Mensagem de confirmação</h4>
                             <p><strong>Deseja remover esta conta?</strong></p>
                             <div class="divider"></div>

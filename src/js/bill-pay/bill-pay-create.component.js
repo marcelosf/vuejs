@@ -8,7 +8,7 @@ const names = [
     'Gasolina'
 ];
 
-import BillPay from '../bill';
+let BillPay = require('../bill');
 
 module.exports = {
 
