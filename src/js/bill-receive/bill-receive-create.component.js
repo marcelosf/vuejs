@@ -1,4 +1,6 @@
-module.exports = {
+import {BillReceiveResource} from '../resources';
+
+export default {
 
     template: `
           <form name="form" @submit.prevent="submit">
@@ -61,12 +63,12 @@ module.exports = {
         submit: function(){
             let self = this;
             if(this.formType == "insert"){
-                BillReceive.save('bills-receive', this.bill).then(function (response) {
+                BillReceiveResource.save('bills-receive', this.bill).then(function (response) {
                     self.$router.go({name: 'bill-receive.list'});
                     self.$dispatch('change-info');
                 })
             }else{
-                BillReceive.update({id: this.bill.id}, this.bill).then(function (response) {
+                BillReceiveResource.update({id: this.bill.id}, this.bill).then(function (response) {
                     self.$router.go({name: 'bill-receive.list'});
                     self.$dispatch('change-info');
                 })
@@ -76,7 +78,7 @@ module.exports = {
         getBill: function(id) {
             let self = this;
             console.log(id);
-            BillReceive.get({id: id}).then(function (response) {
+            BillReceiveResource.get({id: id}).then(function (response) {
                 self.bill = response.data;
                 console.log(response.data);
             });

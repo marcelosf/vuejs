@@ -1,4 +1,4 @@
-window.billReceiveMenuComponent = Vue.extend({
+export default {
 
     template: `
     
@@ -25,4 +25,4 @@ window.billReceiveMenuComponent = Vue.extend({
 
     },
 
-});
+};

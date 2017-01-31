@@ -1,4 +1,6 @@
-module.exports = {
+import {BillReceiveResource} from '../resources';
+
+export default {
 
     template: `
                 
@@ -50,7 +52,7 @@ module.exports = {
 
     created: function () {
         let self = this;
-        BillReceive.query('bills').then(function (response) {
+        BillReceiveResource.query('bills').then(function (response) {
             self.bills = response.data;
 
 
@@ -65,7 +67,7 @@ module.exports = {
             let confirmed = confirm('Deseja remover a conta da lista?');
             if (confirmed){
                 let self = this;
-                BillReceive.delete({id: bill.id}).then(function (response) {
+                BillReceiveResource.delete({id: bill.id}).then(function (response) {
                     self.bills.$remove(bill);
                     self.$dispatch('change-info');
                 });
@@ -79,7 +81,7 @@ module.exports = {
                 bill.done = 0;
             }
             let self = this;
-            BillReceive.update({id: bill.id}, bill).then(function (response){
+            BillReceiveResource.update({id: bill.id}, bill).then(function (response){
                 self.$dispatch('change-info');
             });
         }

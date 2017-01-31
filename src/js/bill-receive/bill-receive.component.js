@@ -1,6 +1,7 @@
 import billReceiveMenuComponent from './bill-receive-menu.component';
+import {BillReceiveResource} from "../resources";
 
-module.exports = {
+export default {
 
     components: {
         'menu-component': billReceiveMenuComponent,
@@ -59,14 +60,14 @@ module.exports = {
 
         updateStatus: function () {
             let self = this;
-            BillReceive.query('bills').then(function (response) {
+            BillReceiveResource.query('bills').then(function (response) {
                 self.calculateStatus(response.data);
             })
         },
 
         updateTotal: function () {
             let self = this;
-            BillReceive.total('bills').then(function (response) {
+            BillReceiveResource.total('bills').then(function (response) {
                 self.total = response.data.total;
             })
         }

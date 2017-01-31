@@ -1,29 +1,21 @@
-require('./bootstrap');
-require([
-    './bill.component',
-    './bill-pay/bill-pay.component',
-    './bill-pay/bill-pay-list.component',
-    './bill-pay/bill-pay-create.component',
-    './bill-receive/bill-receive.component',
-    './bill-receive/bill-receive-list.component',
-    './bill-receive/bill-receive-create.component',
+import './bootstrap';
+    import BillComponent from './bill.component';
+    import BillPayComponent from './bill-pay/bill-pay.component';
+    import BillPayListComponent from './bill-pay/bill-pay-list.component';
+    import BillPayCreateComponent from './bill-pay/bill-pay-create.component';
+    import BillReceiveComponent from './bill-receive/bill-receive.component';
+    import BillReceiveListComponent from './bill-receive/bill-receive-list.component';
+    import BillReceiveCreateComponent from './bill-receive/bill-receive-create.component';
 
-], function (
-    billComponent,
-    billPayComponent,
-    billPayListComponent,
-    billPayCreateComponent,
-    billReceiveComponent,
-    billReceiveListComponent,
-    billReceiveCreateComponent,
-) {
+
+
     let VueRouter = require('vue-router');
     let router = new VueRouter();
 
     var mainComponent = Vue.extend({
 
         components: {
-            'bill-component': billComponent
+            'bill-component': BillComponent
         },
 
         template: '<bill-component></bill-component>',
@@ -52,44 +44,44 @@ require([
 
     router.map({
         '/bill-pays': {
-            component: billPayComponent,
+            component: BillPayComponent,
             subRoutes: {
                 '/': {
                     name: 'bill-pay.list',
-                    component: billPayListComponent
+                    component: BillPayListComponent
                 },
 
                 '/create': {
                     name: 'bill-pay.create',
-                    component: billPayCreateComponent
+                    component: BillPayCreateComponent
                 },
                 '/:id/update': {
                     name: 'bill-pay.update',
-                    component: billPayCreateComponent
+                    component: BillPayCreateComponent
                 }
             }
         },
         '/bill-receives': {
-            component: billReceiveComponent,
+            component: BillReceiveComponent,
             subRoutes: {
                 '/': {
                     name: 'bill-receive.list',
-                    component: billReceiveListComponent
+                    component: BillReceiveListComponent
                 },
 
                 '/create': {
                     name: 'bill-receive.create',
-                    component: billReceiveCreateComponent
+                    component: BillReceiveCreateComponent
                 },
 
                 '/:id/update': {
                     name: 'bill-receive.update',
-                    component: billReceiveCreateComponent
+                    component: BillReceiveCreateComponent
                 }
             }
         },
         '*': {
-            component: billPayListComponent
+            component: BillPayListComponent
         }
 
     });
@@ -97,7 +89,7 @@ require([
     router.start({
 
         components: {
-            'bill-pay-component': billPayComponent
+            'bill-pay-component': BillPayComponent
         }
 
     }, '#app');
@@ -109,5 +101,5 @@ require([
 
     });
 
-});
+
 

@@ -1,3 +1,6 @@
+import {BillResource} from '../resources';
+import {BillPay} from '../bill';
+
 const names = [
     'Conta de luz',
     'Conta de água',
@@ -8,9 +11,7 @@ const names = [
     'Gasolina'
 ];
 
-let BillPay = require('../bill');
-
-module.exports = {
+export default {
 
     template: `
 
@@ -85,14 +86,14 @@ module.exports = {
         submit(){
             var data = this.bill.toJSON();
             if(this.formType == "insert"){
-                Bill.save({}, data).then((response) => {
+                BillResource.save({}, data).then((response) => {
                     Materialize.toast('Conta criada com sucesso!', 4000);
                     this.$router.go({name: 'bill-pay.list'});
                     this.$dispatch('change-info');
                 })
             }else{
                 let self = this;
-                Bill.update({id: this.bill.id}, this.bill).then((response) => {
+                BillResource.update({id: this.bill.id}, this.bill).then((response) => {
                     Materialize.toast('Conta atualizada com sucesso!', 4000);
                     this.$router.go({name: 'bill-pay.list'});
                     this.$dispatch('change-info');
@@ -101,7 +102,7 @@ module.exports = {
         },
         
         getBill(id) {
-            Bill.get({id: id}).then((response) => {
+            BillResource.get({id: id}).then((response) => {
                 this.bill = new BillPay(response.data);
             });
         }

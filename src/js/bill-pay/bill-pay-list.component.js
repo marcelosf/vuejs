@@ -1,9 +1,11 @@
-let modalComponent = require('../modal.component');
+import {BillResource} from '../resources';
+import ModalComponent from '../modal.component';
 
-module.exports = {
+
+export default {
 
     components: {
-        'modal': modalComponent
+        'modal': ModalComponent
     },
 
     template: `
@@ -74,7 +76,7 @@ module.exports = {
 
     created() {
 
-        Bill.query().then((response) => {
+        BillResource.query().then((response) => {
             this.bills = response.data;
         });
 
@@ -85,7 +87,7 @@ module.exports = {
 
         removeBill(){
             //let self = this;
-            Bill.delete({id: this.billToDelete.id}).then((response) => {
+            BillResource.delete({id: this.billToDelete.id}).then((response) => {
                 this.bills.$remove(this.billToDelete);
                 this.billToDelete = null;
                 Materialize.toast('Conta excluida com sucesso!', 4000);
