@@ -1,5 +1,5 @@
 import './bootstrap';
-    import BillComponent from './bill.component';
+    import BillComponent from './bill.vue';
     import BillPayComponent from './bill-pay/bill-pay.component';
     import BillPayListComponent from './bill-pay/bill-pay-list.component';
     import BillPayCreateComponent from './bill-pay/bill-pay-create.component';

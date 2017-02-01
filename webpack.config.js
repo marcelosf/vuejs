@@ -37,6 +37,10 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: extractCSS.extract(['css', 'sass'])
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue'
             }
         ]
     },
