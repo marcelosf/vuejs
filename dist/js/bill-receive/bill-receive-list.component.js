@@ -1,6 +1,12 @@
 'use strict';
 
-module.exports = {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _resources = require('../resources');
+
+exports.default = {
 
     template: '\n                \n               <style type="text/css">\n                    .pago, .em-dia{\n                        color: green;\n                    }\n                    .nao-pago, .devendo{\n                        color: red;\n                    }\n                </style> \n               <table border="1" cellpadding="10">\n                   <thead>\n                   <tr>\n                       <td>#</td>\n                       <th>Vencimento</th>\n                       <th>Nome</th>\n                       <th>Valor</th>\n                       <th>Paga?</th>\n                       <th>A\xE7\xF5es</th>\n                   </tr>\n                   </thead>\n\n                   <tbody>\n                   <tr v-for="(index,o) in bills">\n                       <td>{{ index + 1 }}</td>\n                       <td>{{ o.date_due }}</td>\n                       <td>{{ o.name }}</td>\n                       <td>{{ o.value | currency \'R$ \' 2}}</td>\n                       <td :class="{\'pago\': o.done, \'nao-pago\': !o.done}">\n                           {{ o.done | doneLabel }}\n                       </td>\n                       <td>\n                           <a v-link="{name: \'bill-receive.update\', params: {id: o.id }}">Editar</a>\n                           <a href="#" @click.prevent="$parent.removeBill(o)">Remover</a>\n                           <a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>\n                       </td>\n                   </tr>\n                   </tbody>\n               </table>\n    \n    ',
 
@@ -12,7 +18,7 @@ module.exports = {
 
     created: function created() {
         var self = this;
-        BillReceive.query('bills').then(function (response) {
+        _resources.BillReceiveResource.query('bills').then(function (response) {
             self.bills = response.data;
         });
     },
@@ -26,7 +32,7 @@ module.exports = {
             if (confirmed) {
                 (function () {
                     var self = _this;
-                    BillReceive.delete({ id: bill.id }).then(function (response) {
+                    _resources.BillReceiveResource.delete({ id: bill.id }).then(function (response) {
                         self.bills.$remove(bill);
                         self.$dispatch('change-info');
                     });
@@ -41,7 +47,7 @@ module.exports = {
                 bill.done = 0;
             }
             var self = this;
-            BillReceive.update({ id: bill.id }, bill).then(function (response) {
+            _resources.BillReceiveResource.update({ id: bill.id }, bill).then(function (response) {
                 self.$dispatch('change-info');
             });
         }

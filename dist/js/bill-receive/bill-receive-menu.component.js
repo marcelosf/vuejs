@@ -1,6 +1,9 @@
 "use strict";
 
-window.billReceiveMenuComponent = Vue.extend({
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
 
     template: "\n    \n           <nav>\n               <ul>\n                   <li v-for=\"o in menus\">\n                       <a v-link=\"{name: o.routeName }\">{{ o.name }}</a>\n                   </li>\n               </ul>\n           </nav>\n    \n    ",
 
@@ -13,4 +16,4 @@ window.billReceiveMenuComponent = Vue.extend({
         };
     }
 
-});
+};

@@ -1,11 +1,11 @@
 import './bootstrap';
     import BillComponent from './bill.vue';
-    import BillPayComponent from './bill-pay/bill-pay.component';
-    import BillPayListComponent from './bill-pay/bill-pay-list.component';
-    import BillPayCreateComponent from './bill-pay/bill-pay-create.component';
-    import BillReceiveComponent from './bill-receive/bill-receive.component';
-    import BillReceiveListComponent from './bill-receive/bill-receive-list.component';
-    import BillReceiveCreateComponent from './bill-receive/bill-receive-create.component';
+    import BillPayComponent from './bill-pay/bill-pay.vue';
+    import BillPayListComponent from './bill-pay/bill-pay-list.vue';
+    import BillPayCreateComponent from './bill-pay/bill-pay-create.vue';
+    import BillReceiveComponent from './bill-receive/bill-receive.vue';
+    import BillReceiveListComponent from './bill-receive/bill-receive-list.vue';
+    import BillReceiveCreateComponent from './bill-receive/bill-receive-create.vue';
 
 
 
