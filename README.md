@@ -1,8 +1,9 @@
 
 # Curso Laravel com Vuejs
 
-![laravel Logo](images/laravel_logo.png)
-![vue Logo](images/vue.png)
+![laravel Logo](images/laravel_logo.png){:height="200px" width="200px"}
+
+![vue Logo](images/vue.png){:height="200px" width="200px"}
 
 
 ## Instalação
