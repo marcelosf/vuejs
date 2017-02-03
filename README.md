@@ -1,9 +1,9 @@
 
 # Curso Laravel com Vuejs
 
-<img src="http://kodeinfo.com/img/laravel_logo.png" width="200" height="200">
+<img src="http://kodeinfo.com/img/laravel_logo.png" width="200" height="200"> <img src="https://vuejs.org/images/logo.png" width="200" height="200">
 
-![vue Logo](images/vue.png){:height="200px" width="200px"}
+
 
 
 ## Instalação
