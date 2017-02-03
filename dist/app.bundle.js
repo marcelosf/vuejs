@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f381b436c93309882c34"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b9264f344bb11bb89585"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -599,25 +599,25 @@
 	
 	var _billPayList2 = _interopRequireDefault(_billPayList);
 	
-	var _billPayCreate = __webpack_require__(49);
+	var _billPayCreate = __webpack_require__(50);
 	
 	var _billPayCreate2 = _interopRequireDefault(_billPayCreate);
 	
-	var _billReceive = __webpack_require__(53);
+	var _billReceive = __webpack_require__(54);
 	
 	var _billReceive2 = _interopRequireDefault(_billReceive);
 	
-	var _billReceiveList = __webpack_require__(58);
+	var _billReceiveList = __webpack_require__(60);
 	
 	var _billReceiveList2 = _interopRequireDefault(_billReceiveList);
 	
-	var _billReceiveCreate = __webpack_require__(59);
+	var _billReceiveCreate = __webpack_require__(63);
 	
 	var _billReceiveCreate2 = _interopRequireDefault(_billReceiveCreate);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var VueRouter = __webpack_require__(60);
+	var VueRouter = __webpack_require__(66);
 	var router = new VueRouter();
 	
 	var mainComponent = Vue.extend({
@@ -26011,6 +26011,7 @@
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/js/bill-pay/bill-pay-list.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(49)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -26088,7 +26089,7 @@
 	                bill.done = 0;
 	            }
 	            var self = this;
-	            Bill.update({ id: bill.id }, bill).then(function (response) {
+	            _resources.BillResource.update({ id: bill.id }, bill).then(function (response) {
 	                self.$dispatch('change-info');
 	            });
 	        },
@@ -26166,15 +26167,21 @@
 
 /***/ },
 /* 49 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n<div class=\"container\">\n\n    <div class=\"row\">\n        <div>\n            <h2>Minhas Contas a Pagar</h2>\n            <table class=\"striped centered highlight z-depth-3\" cellpadding=\"10\">\n                <thead>\n                <tr>\n                    <td>#</td>\n                    <th>Vencimento</th>\n                    <th>Nome</th>\n                    <th>Valor</th>\n                    <th>Paga?</th>\n                    <th>Ações</th>\n                </tr>\n                </thead>\n\n                <tbody>\n                <tr v-for=\"(index,o) in bills\">\n                    <td>{{ index + 1 }}</td>\n                    <td>{{ o.date_due | dateFormat 'pt-BR' }}</td>\n                    <td>{{ o.name }}</td>\n                    <td>{{ o.value | numberFormat 'pt-BR' 'BRL' }}</td>\n                    <td class=\"white-text\" :class=\"{'blue lighten-3': o.done, 'red lighten-2': !o.done}\">\n                        {{ o.done | doneLabel }}\n                    </td>\n                    <td>\n                        <a v-link=\"{name: 'bill-pay.update', params: {id: o.id }}\" class=\"btn btn-flat\">Editar</a>\n                        <a href=\"#\" @click.prevent=\"openModalDelete(o)\" class=\"btn btn-flat\">Remover</a>\n                        <!--<a href=\"#\" @click.prevent=\"$parent.baixa(o)\">{{ o.done | paidLabel }}</a>-->\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n<modal :modal=\"modal\">\n    <div slot=\"content\" v-if=\"billToDelete\">\n        <h4>Mensagem de confirmação</h4>\n        <p><strong>Deseja remover esta conta?</strong></p>\n        <div class=\"divider\"></div>\n        <p>Nome: <strong>{{ billToDelete.name }}</strong></p>\n        <p>Valor: <strong>{{ billToDelete.value | numberFormat }}</strong></p>\n        <p>Data: <strong>{{ billToDelete.date_due | dateFormat }}</strong></p>\n\n    </div>\n    <div slot=\"footer\">\n        <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click=\"removeBill()\">Ok</button>\n        <button class=\"btn btn-flat waves-red modal-close modal-action white\">Cancelar</button>\n    </div>\n</modal>\n\n\n";
+
+/***/ },
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(50)
+	__vue_script__ = __webpack_require__(51)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/js/bill-pay/bill-pay-create.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(52)
+	__vue_template__ = __webpack_require__(53)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -26193,7 +26200,7 @@
 	})()}
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26204,7 +26211,7 @@
 	
 	var _resources = __webpack_require__(42);
 	
-	var _bill = __webpack_require__(51);
+	var _bill = __webpack_require__(52);
 	
 	var names = ['Conta de luz', 'Conta de água', 'Conta de telefone', 'Supermercado', 'Cartão de crédito', 'Empréstimo', 'Gasolina'];
 	
@@ -26264,7 +26271,7 @@
 	};
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26306,23 +26313,22 @@
 	}();
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"container\">\n    <div class=\"row\">\n\n        <h2>Nova Conta</h2>\n\n        <form name=\"form\" @submit.prevent=\"submit\">\n\n            <div class=\"row\">\n                <div class=\"input-field col s6\">\n                    <label class=\"active\">Vencimento:</label>\n                    <input type=\"text\" v-model=\"bill.date_due | dateFormat 'en-US'\" placeholder=\"Informe a data\">\n                </div>\n                <div class=\"input-field col s6\">\n                    <label class=\"active\">Valor:</label>\n                    <input type=\"text\" v-model=\"bill.value | numberFormat\"/>\n                </div>\n            </div>\n\n            <div class=\"row\">\n                <div class=\"iput-field col s6\">\n                    <label>Nome:</label>\n                    <select v-model=\"bill.name\" id=\"name\" class=\"browser-default\">\n                        <option v-for=\"o in names\" :value=\"o\">\n                            {{ o }}\n                        </option>\n                    </select>\n                </div>\n                <div class=\"input-field col s6\">\n                    <input type=\"checkbox\" v-model=\"bill.done\" id=\"pago\"/>\n                    <label for=\"pago\">Pago?</label>\n                </div>\n            </div>\n            <div class=\"row\">\n                <input type=\"submit\" value=\"Enviar\" class=\"btn btn-large right\" />\n            </div>\n        </form>\n    </div>\n</div>\n\n";
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(54)
-	__vue_script__ = __webpack_require__(56)
+	__vue_script__ = __webpack_require__(55)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/js/bill-receive/bill-receive.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(57)
+	__vue_template__ = __webpack_require__(59)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -26341,59 +26347,178 @@
 	})()}
 
 /***/ },
-/* 54 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(55);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	if(content.locals) module.exports = content.locals;
-	// add the styles to the DOM
-	var update = __webpack_require__(35)("2d28b204", content, false);
-	// Hot Module Replacement
-	if(true) {
-	 // When the styles change, update the <style> tags
-	 if(!content.locals) {
-	   module.hot.accept(55, function() {
-	     var newContent = __webpack_require__(55);
-	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-	     update(newContent);
-	   });
-	 }
-	 // When the module is disposed, remove the <style> tags
-	 module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
-	// imports
+	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	
-	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.sem-contas {\n    color: darkgray;\n}\n", "", {"version":3,"sources":["/./src/js/bill-receive/bill-receive.vue?82615d1a"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;AAwBA;IACA,gBAAA;CACA","file":"bill-receive.vue","sourcesContent":["<template>\r\n\r\n\r\n</template>\r\n\r\n\r\n<script>\r\n\r\n\r\n</script>\r\n\r\nimport billReceiveMenuComponent from './bill-receive-menu.component';\r\nimport {BillReceiveResource} from \"../resources\";\r\n\r\nexport default {\r\n\r\n    components: {\r\n        'menu-component': billReceiveMenuComponent,\r\n    },\r\n\r\n    template: `\r\n            \r\n            <style type=\"text/css\">\r\n                \r\n                .sem-contas {\r\n                    color: darkgray;\r\n                }\r\n            </style> \r\n            \r\n           <h1> {{ title }} </h1>\r\n           <h3 :class=\"status | statusClass\">{{ status | statusMessage }}</h3>\r\n           <h3>{{ total | currency 'R$ ' }}</h3>\r\n           \r\n           <menu-component></menu-component>\r\n           <router-view></router-view> \r\n          \r\n    \r\n    `,\r\n\r\n    data: function () {\r\n\r\n        return {\r\n            title: \"Contas a receber\",\r\n            status: false,\r\n            total: 0,\r\n        }\r\n    },\r\n\r\n    created: function(){\r\n        this.updateStatus();\r\n        this.updateTotal();\r\n    },\r\n\r\n    methods: {\r\n\r\n        calculateStatus: function (bills) {\r\n\r\n            if (!bills.length) {\r\n                return this.status = false;\r\n            }\r\n\r\n            let count = 0;\r\n\r\n            for (let i in bills) {\r\n                if(!bills[i].done){\r\n                    count ++;\r\n                }\r\n            }\r\n            this.status = count;\r\n        },\r\n\r\n        updateStatus: function () {\r\n            let self = this;\r\n            BillReceiveResource.query('bills').then(function (response) {\r\n                self.calculateStatus(response.data);\r\n            })\r\n        },\r\n\r\n        updateTotal: function () {\r\n            let self = this;\r\n            BillReceiveResource.total('bills').then(function (response) {\r\n                self.total = response.data.total;\r\n            })\r\n        }\r\n\r\n    },\r\n\r\n    events: {\r\n        'change-info' : function () {\r\n            this.updateStatus();\r\n            this.updateTotal();\r\n        }\r\n    }\r\n\r\n};"],"sourceRoot":"webpack://"}]);
+	var _billReceiveMenu = __webpack_require__(56);
 	
-	// exports
-
+	var _billReceiveMenu2 = _interopRequireDefault(_billReceiveMenu);
+	
+	var _resources = __webpack_require__(42);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	
+	    components: {
+	        'menu-component': _billReceiveMenu2.default
+	    },
+	
+	    data: function data() {
+	
+	        return {
+	            title: "Contas a receber",
+	            status: false,
+	            total: 0
+	        };
+	    },
+	
+	    created: function created() {
+	        this.updateStatus();
+	        this.updateTotal();
+	    },
+	
+	    methods: {
+	
+	        calculateStatus: function calculateStatus(bills) {
+	
+	            if (!bills.length) {
+	                return this.status = false;
+	            }
+	
+	            var count = 0;
+	
+	            for (var i in bills) {
+	                if (!bills[i].done) {
+	                    count++;
+	                }
+	            }
+	            this.status = count;
+	        },
+	
+	        updateStatus: function updateStatus() {
+	            var self = this;
+	            _resources.BillReceiveResource.query('bills').then(function (response) {
+	                self.calculateStatus(response.data);
+	            });
+	        },
+	
+	        updateTotal: function updateTotal() {
+	            var self = this;
+	            _resources.BillReceiveResource.total('bills').then(function (response) {
+	                self.total = response.data.total;
+	            });
+	        }
+	
+	    },
+	
+	    events: {
+	        'change-info': function changeInfo() {
+	            this.updateStatus();
+	            this.updateTotal();
+	        }
+	    }
+	
+	};
 
 /***/ },
 /* 56 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(57)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src/js/bill-receive/bill-receive-menu.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(58)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (true) {(function () {  module.hot.accept()
+	  var hotAPI = __webpack_require__(39)
+	  hotAPI.install(__webpack_require__(28), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-282a95a4/bill-receive-menu.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
 
 /***/ },
 /* 57 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n";
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	
+	    data: function data() {
+	
+	        return {
+	
+	            menus: [{ id: 0, name: "Listar contas", routeName: 'bill-receive.list' }, { id: 1, name: "Criar conta", routeName: 'bill-receive.create' }]
+	
+	        };
+	    }
+	
+	};
 
 /***/ },
 /* 58 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n<nav>\n    <ul>\n        <li v-for=\"o in menus\">\n            <a v-link=\"{name: o.routeName }\">{{ o.name }}</a>\n        </li>\n    </ul>\n</nav>\n\n";
+
+/***/ },
+/* 59 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n<style type=\"text/css\">\n\n    .sem-contas {\n        color: darkgray;\n    }\n</style>\n\n<h1> {{ title }} </h1>\n<h3 :class=\"status | statusClass\">{{ status | statusMessage }}</h3>\n<h3>{{ total | currency 'R$ ' }}</h3>\n\n<menu-component></menu-component>\n\n<router-view></router-view>\n\n\n";
+
+/***/ },
+/* 60 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(61)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src/js/bill-receive/bill-receive-list.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(62)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (true) {(function () {  module.hot.accept()
+	  var hotAPI = __webpack_require__(39)
+	  hotAPI.install(__webpack_require__(28), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-601c98ed/bill-receive-list.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26405,8 +26530,6 @@
 	var _resources = __webpack_require__(42);
 	
 	exports.default = {
-	
-	    template: '\n                \n               <style type="text/css">\n                    .pago, .em-dia{\n                        color: green;\n                    }\n                    .nao-pago, .devendo{\n                        color: red;\n                    }\n                </style> \n               <table border="1" cellpadding="10">\n                   <thead>\n                   <tr>\n                       <td>#</td>\n                       <th>Vencimento</th>\n                       <th>Nome</th>\n                       <th>Valor</th>\n                       <th>Paga?</th>\n                       <th>A\xE7\xF5es</th>\n                   </tr>\n                   </thead>\n\n                   <tbody>\n                   <tr v-for="(index,o) in bills">\n                       <td>{{ index + 1 }}</td>\n                       <td>{{ o.date_due }}</td>\n                       <td>{{ o.name }}</td>\n                       <td>{{ o.value | currency \'R$ \' 2}}</td>\n                       <td :class="{\'pago\': o.done, \'nao-pago\': !o.done}">\n                           {{ o.done | doneLabel }}\n                       </td>\n                       <td>\n                           <a v-link="{name: \'bill-receive.update\', params: {id: o.id }}">Editar</a>\n                           <a href="#" @click.prevent="$parent.removeBill(o)">Remover</a>\n                           <a href="#" @click.prevent="$parent.baixa(o)">{{ o.done | paidLabel }}</a>\n                       </td>\n                   </tr>\n                   </tbody>\n               </table>\n    \n    ',
 	
 	    data: function data() {
 	        return {
@@ -26455,7 +26578,41 @@
 	};
 
 /***/ },
-/* 59 */
+/* 62 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n<style type=\"text/css\">\n    .pago, .em-dia{\n        color: green;\n    }\n    .nao-pago, .devendo{\n        color: red;\n    }\n</style>\n<table border=\"1\" cellpadding=\"10\">\n    <thead>\n    <tr>\n        <td>#</td>\n        <th>Vencimento</th>\n        <th>Nome</th>\n        <th>Valor</th>\n        <th>Paga?</th>\n        <th>Ações</th>\n    </tr>\n    </thead>\n\n    <tbody>\n    <tr v-for=\"(index,o) in bills\">\n        <td>{{ index + 1 }}</td>\n        <td>{{ o.date_due }}</td>\n        <td>{{ o.name }}</td>\n        <td>{{ o.value | currency 'R$ ' 2}}</td>\n        <td :class=\"{'pago': o.done, 'nao-pago': !o.done}\">\n            {{ o.done | doneLabel }}\n        </td>\n        <td>\n            <a v-link=\"{name: 'bill-receive.update', params: {id: o.id }}\">Editar</a>\n            <a href=\"#\" @click.prevent=\"$parent.removeBill(o)\">Remover</a>\n            <a href=\"#\" @click.prevent=\"$parent.baixa(o)\">{{ o.done | paidLabel }}</a>\n        </td>\n    </tr>\n    </tbody>\n</table>\n\n";
+
+/***/ },
+/* 63 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(64)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src/js/bill-receive/bill-receive-create.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(65)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (true) {(function () {  module.hot.accept()
+	  var hotAPI = __webpack_require__(39)
+	  hotAPI.install(__webpack_require__(28), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-4629d88b/bill-receive-create.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26467,8 +26624,6 @@
 	var _resources = __webpack_require__(42);
 	
 	exports.default = {
-	
-	    template: '\n          <form name="form" @submit.prevent="submit">\n                   <label>Vencimento:</label>\n                   <input type="text" v-model="bill.date_due">\n                   <br><br>\n                   <label>Nome:</label>\n                   <select v-model="bill.name">\n                       <option v-for="o in names" :value="o">\n                           {{ o }}\n                       </option>\n                   </select>\n                   <br><br>\n                   <label>Valor:</label>\n                   <input type="text" v-model="bill.value"/>\n                   <br><br>\n                   <label>Pago?</label>\n                   <input type="checkbox" v-model="bill.done"/>\n                   <br/><br/>\n                   <input type="submit" value="Enviar" />\n          </form>\n    ',
 	
 	    formType: 'insert',
 	
@@ -26524,7 +26679,13 @@
 	};
 
 /***/ },
-/* 60 */
+/* 65 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n<form name=\"form\" @submit.prevent=\"submit\">\n    <label>Vencimento:</label>\n    <input type=\"text\" v-model=\"bill.date_due\">\n    <br><br>\n    <label>Nome:</label>\n    <select v-model=\"bill.name\">\n        <option v-for=\"o in names\" :value=\"o\">\n            {{ o }}\n        </option>\n    </select>\n    <br><br>\n    <label>Valor:</label>\n    <input type=\"text\" v-model=\"bill.value\"/>\n    <br><br>\n    <label>Pago?</label>\n    <input type=\"checkbox\" v-model=\"bill.done\"/>\n    <br/><br/>\n    <input type=\"submit\" value=\"Enviar\" />\n</form>\n\n\n";
+
+/***/ },
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!

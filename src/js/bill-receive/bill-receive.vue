@@ -1,21 +1,28 @@
 <template>
 
-    <style type="text/css">
+    <div class="section">
+        <div class="container">
+            <h4> {{ title }} </h4>
+            <div class="row">
+                <div class="col s6">
+                    <div class="collection">
+                        <a href="#!" class="collection-item"><span class="badge">{{ status }}</span><i class="material-icons left">account_balance</i>{{ status | statusMessage }}</a>
+                    </div>
+                </div>
 
-        .sem-contas {
-            color: darkgray;
-        }
-    </style>
+                <div class="col s6">
+                    <div class="collection">
+                        <a href="#!" class="collection-item"><span class="badge">{{ total | numberFormat }}</span><i class="material-icons left">payment</i>Total</a>
+                    </div>
 
-    <h1> {{ title }} </h1>
-    <h3 :class="status | statusClass">{{ status | statusMessage }}</h3>
-    <h3>{{ total | currency 'R$ ' }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <menu-component></menu-component>
+    <div class="divider"></div>
 
     <router-view></router-view>
-
-
 </template>
 
 

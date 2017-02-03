@@ -10,7 +10,6 @@
 
 </template>
 
-
 <script type="text/javascript">
 
     module.exports = {
