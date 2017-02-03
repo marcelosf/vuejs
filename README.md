@@ -1,7 +1,7 @@
 
 # Curso Laravel com Vuejs
 
-![laravel Logo](images/laravel_logo.png){:height="200px" width="200px"}
+<img src="http://kodeinfo.com/img/laravel_logo.png" width="200" height="200">
 
 ![vue Logo](images/vue.png){:height="200px" width="200px"}
 
